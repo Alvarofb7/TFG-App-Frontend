@@ -4,20 +4,21 @@ import { LoginPage } from "../auth"
 import { CalendarPage } from "../calendar";
 import { KanbanPage } from "../kanban";
 import { NotesPage } from "../notes";
+import { useSelector } from "react-redux";
 
 export const AppRouter = () => {
 
-    const status = "no-authenticated";
+    const { status } = useSelector(state => state.auth);
 
     return (
         <>
             <Routes>
                 {
-                    (status === "no-authenticated")
+                    (status === "not-authenticated")
                         ? (
                             <>
                                 <Route path="/auth/login" element={ <LoginPage /> } />
-                                
+
                                 <Route path="/*" element={ <Navigate to="/auth/login" /> } />
                             </>
                         ) : (
