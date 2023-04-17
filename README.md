@@ -8,3 +8,7 @@ yarn
 
 ## Instalaciones:
 yarn add react-router-dom -> Router
+
+yarn add react-redux -> Redux
+
+yarn add @reduxjs/toolkit -> Redux-toolkit
