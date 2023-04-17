@@ -7,3 +7,4 @@ yarn create vite
 yarn
 
 ## Instalaciones:
+yarn add react-router-dom -> Router
