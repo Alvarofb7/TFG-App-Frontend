@@ -1,6 +1,10 @@
+import { Navbar } from "../../calendar"
 
 export const NotesPage = () => {
     return (
-        <h1>NotesPage</h1>
+        <>
+            <Navbar />
+            <h1>NotesPage</h1>
+        </>
     )
 }

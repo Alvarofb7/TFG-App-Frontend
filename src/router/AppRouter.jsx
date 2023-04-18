@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 export const AppRouter = () => {
 
-    const { status } = useSelector(state => state.auth);
+    // const { status } = useSelector(state => state.auth);
+
+    const status = "authenticated";
 
     return (
         <>

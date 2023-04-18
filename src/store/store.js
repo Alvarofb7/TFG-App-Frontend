@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice, calendarSlice, kanbanSlice, notesSlice } from "./";
+import { authSlice, calendarSlice, kanbanSlice, notesSlice, uiSlice } from "./";
 
 
 export const store = configureStore({
@@ -8,6 +8,7 @@ export const store = configureStore({
         calendar: calendarSlice.reducer,
         notes: notesSlice.reducer,
         kanban: kanbanSlice.reducer,
+        ui: uiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false

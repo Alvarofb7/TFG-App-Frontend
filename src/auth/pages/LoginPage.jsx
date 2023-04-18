@@ -20,10 +20,11 @@ export const LoginPage = () => {
     const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields);
     const { registerName, registerEmail, registerPassword, registerPassword2, onInputChange: onRegisterInputChange } = useForm(registerFormFields);
 
-    const { errorMessage, startLogin, startRegister } = useAuthStore();
+    const { startLogin, startRegister } = useAuthStore();
 
     const loginSubmit = (event) => {
         event.preventDefault();
+        if (loginEmail.length < 4 || loginPassword < 4) return;
         startLogin({ email: loginEmail, password: loginPassword });
     }
 
