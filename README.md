@@ -23,3 +23,5 @@ yarn add react-modal
 yarn add react-datepicker
 ### Dotenv
 yarn add dotenv
+### Axios
+yarn add axios

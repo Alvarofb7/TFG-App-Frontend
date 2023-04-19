@@ -1,16 +1,20 @@
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { LoginPage } from "../auth"
 import { CalendarPage } from "../calendar";
 import { KanbanPage } from "../kanban";
 import { NotesPage } from "../notes";
-import { useSelector } from "react-redux";
+import { useAuthStore } from "../hooks";
 
 export const AppRouter = () => {
 
-    // const { status } = useSelector(state => state.auth);
+    const { status, checkAuthToken } = useAuthStore();
 
-    const status = "authenticated";
+    useEffect(() => {
+        checkAuthToken();
+
+    }, [])
 
     return (
         <>

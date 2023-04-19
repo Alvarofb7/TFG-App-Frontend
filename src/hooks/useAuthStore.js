@@ -1,18 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar } from "../store";
+import { api } from "../api";
+import Swal from "sweetalert2";
 
 export const useAuthStore = () => {
 
     const dispatch = useDispatch();
     const { status, user, errorMessage } = useSelector(state => state.auth);
 
-
     const startLogin = async ({ email, password }) => {
         dispatch(onChecking());
         try {
-            dispatch(onLogin ({ email, password}));
+            const { data } = await api.post("/auth", { email, password });
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("token-init-date", new Date().getTime());
+
+            dispatch(onLogin({ name: data.name, uid: data.uid }));
         } catch (error) {
-            dispatch(onLogout("Credenciales incorrectas"));
+            dispatch(onLogout(error.response.data?.msg || "Credenciales incorrectas"));
+            Swal.fire("Error en registro", error.response.data?.msg || "Credenciales incorrectas", "error");
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);
@@ -22,14 +29,34 @@ export const useAuthStore = () => {
     const startRegister = async ({ name, email, password }) => {
         dispatch(onChecking());
         try {
+            const { data } = await api.post("/auth/new", { name, email, password });
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("token-init-date", new Date().getTime());
 
-            dispatch(onLogin({ name, email, password }));
+            dispatch(onLogin({ name: data.name, uid: data.uid }));
         } catch (error) {
-            dispatch(onLogout("Error en la creación de la cuenta"));
-
+            dispatch(onLogout(error.response.data?.msg || "Error en la creación de la cuenta"));
+            Swal.fire("Error en registro", error.response.data?.msg || "Error en la creación de la cuenta", "error");
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);
+        }
+    }
+
+    const checkAuthToken = async () => {
+        const token = localStorage.getItem("token");
+
+        if (!token) return dispatch(onLogout());
+
+        try {
+            const { data } = await api.get("/auth/renew");
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("token-init-date", new Date().getTime());
+
+            dispatch(onLogin({ name: data.name, uid: data.uid }));
+        } catch (error) {
+            localStorage.clear();
+            dispatch(onLogout());
         }
     }
 
@@ -47,6 +74,7 @@ export const useAuthStore = () => {
         user,
 
         //* Métodos
+        checkAuthToken,
         startLogin,
         startLogout,
         startRegister,
