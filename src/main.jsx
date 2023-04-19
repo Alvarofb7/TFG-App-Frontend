@@ -6,7 +6,7 @@ import { TFGApp } from './TFGApp';
 import './styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <TFGApp />
-    </React.StrictMode>,
+    // </React.StrictMode>,
 )
