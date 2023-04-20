@@ -1,0 +1,31 @@
+.title {
+    font-size: 3rem;
+}
+
+.description {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.features {
+    margin-bottom: 2rem;
+}
+
+.images {
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+
+.footer-text {
+    text-align: center;
+}

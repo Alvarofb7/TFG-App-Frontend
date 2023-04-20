@@ -43,7 +43,7 @@ export const CalendarPage = () => {
 
     const onSelect = (event) => {
         setActiveEvent(event);
-        setSelectedEventId(event._id);
+        setSelectedEventId(event.id);
     }
 
     const onSelectEmptySlot = () => {

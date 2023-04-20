@@ -13,10 +13,7 @@ export const FabAddNew = () => {
             allDay: false,
             start: new Date(),
             end: addHours(new Date(), 2),
-            user: {
-                _id: "123",
-                name: "Alvaro"
-            }
+            user: {}
         })
         openDateModal();
     }

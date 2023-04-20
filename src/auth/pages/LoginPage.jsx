@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { useAuthStore, useForm } from '../../hooks';
 
 import './LoginPage.css';
+import { HomePage } from '../layout/HomePage';
 
 const loginFormFields = {
     loginEmail: "",
@@ -24,7 +25,6 @@ export const LoginPage = () => {
 
     const loginSubmit = (event) => {
         event.preventDefault();
-        if (loginEmail.length < 4 || loginPassword < 4) return;
         startLogin({ email: loginEmail, password: loginPassword });
     }
 
@@ -38,6 +38,9 @@ export const LoginPage = () => {
     }
 
     return (
+
+        // <HomePage>
+
         <div className="container login-container">
             <div className="row login-row">
                 <div className="col-md-6 login-form-1">
@@ -128,5 +131,7 @@ export const LoginPage = () => {
                 </div>
             </div>
         </div>
+        // </HomePage>
+
     )
 }
