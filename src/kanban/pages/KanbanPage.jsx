@@ -1,4 +1,4 @@
-import { Navbar } from "../../calendar"
+import { Navbar } from "../../ui/components/Navbar";
 
 export const KanbanPage = () => {
     return (

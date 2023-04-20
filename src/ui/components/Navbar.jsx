@@ -8,8 +8,6 @@ export const Navbar = () => {
     return (
         <div className="navbar navbar-expand-md navbar-dark bg-dark mb-4 px-4">
             <span className="navbar-brand">
-                <i className="fas fa-calendar-alt"></i>
-                &nbsp;
                 { user.name || "Sin nombre definido" }
             </span>
 
@@ -19,6 +17,8 @@ export const Navbar = () => {
                         className={ ({ isActive }) => `nav-link ${isActive ? "active" : ""}` }
                         to="/calendar"
                     >
+                        <i className="fa fa-calendar-alt"></i>
+                        &nbsp;
                         Calendario
                     </NavLink>
 
@@ -26,12 +26,16 @@ export const Navbar = () => {
                         className={ ({ isActive }) => `nav-link ${isActive ? "active" : ""}` }
                         to="/notes"
                     >
+                        <i className="fa fa-book"></i>
+                        &nbsp;
                         Notas
                     </NavLink>
                     <NavLink
                         className={ ({ isActive }) => `nav-link ${isActive ? "active" : ""}` }
                         to="/kanban"
                     >
+                        <i className="fa fa-list-check"></i>
+                        &nbsp;
                         Kanban
                     </NavLink>
                 </div>
