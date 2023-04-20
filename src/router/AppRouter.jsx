@@ -13,14 +13,13 @@ export const AppRouter = () => {
 
     useEffect(() => {
         checkAuthToken();
-
-    }, [])
+    }, []);
 
     return (
         <>
             <Routes>
                 {
-                    (status === "not-authenticated")
+                    (status !== "authenticated")
                         ? (
                             <>
                                 <Route path="/auth/login" element={ <LoginPage /> } />
