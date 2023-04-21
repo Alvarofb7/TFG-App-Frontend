@@ -3,7 +3,6 @@ import { Calendar } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete } from "../";
-import { Navbar } from "../../ui/components/Navbar";
 import { getMessagesES, localizer } from "../../helpers";
 import { useCalendarStore, useUiStore } from "../../hooks";
 
@@ -18,14 +17,14 @@ export const CalendarPage = () => {
         let style = {}
         if (lastView !== "agenda") {
             style = {
-                backgroundColor: (event._id === selectedEventId) ? "#9FCAF1" : "#357EC7",
+                backgroundColor: (event.id === selectedEventId) ? "#9FCAF1" : "#357EC7",
                 borderRadius: "0px",
                 opacity: 0.8,
                 color: "white",
             }
         } else {
             style = {
-                backgroundColor: (event._id === selectedEventId) && "#9FCAF1"
+                backgroundColor: (event.id === selectedEventId) && "#9FCAF1"
             }
         }
         return {
@@ -58,8 +57,6 @@ export const CalendarPage = () => {
 
     return (
         <>
-            <Navbar />
-
             <Calendar
                 selectable
                 dayLayoutAlgorithm="no-overlap" // Evitamos que se solapen los eventos

@@ -9,11 +9,7 @@ import { useAuthStore } from "../hooks";
 
 export const AppRouter = () => {
 
-    const { status, checkAuthToken } = useAuthStore();
-
-    useEffect(() => {
-        checkAuthToken();
-    }, []);
+    const { status } = useAuthStore();
 
     return (
         <>
@@ -35,9 +31,7 @@ export const AppRouter = () => {
                                 <Route path="/*" element={ <Navigate to="/calendar" /> } />
                             </>
                         )
-
                 }
-
             </Routes>
         </>
     )

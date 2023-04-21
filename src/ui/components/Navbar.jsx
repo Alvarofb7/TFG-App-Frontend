@@ -1,17 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
+import { useState } from "react";
 
 export const Navbar = () => {
 
-    const { user, startLogout } = useAuthStore()
+    const { status, user, startLogout } = useAuthStore();
+
+    const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+    const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
     return (
-        <div className="navbar navbar-expand-md navbar-dark bg-dark mb-4 px-4">
-            <span className="navbar-brand">
-                { user.name || "Sin nombre definido" }
-            </span>
+        <div className="navbar navbar-expand-md navbar-dark bg-dark mb-4 px-4" style={ { display: (status === "authenticated") ? "" : "none" } }>
+            <button className="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFeatures" aria-controls="navbarFeatures" aria-expanded={ !isNavCollapsed ? true : false } aria-label="Toggle navigation" onClick={ handleNavCollapse }>
+                <span className="navbar-toggler-icon"></span>
+            </button>
 
-            <div className="navbar-collapse">
+            <div className={ `${isNavCollapsed ? 'collapse' : ''} navbar-collapse` } id="navbarFeatures">
                 <div className="navbar-nav">
                     <NavLink
                         className={ ({ isActive }) => `nav-link ${isActive ? "active" : ""}` }
