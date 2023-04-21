@@ -1,26 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addHours } from 'date-fns';
-
-// const tempEvent = {
-//     _id: new Date().getTime(),
-//     title: "Cumpleaños del Jefe",
-//     notes: "Hay que comprar la tarta",
-//     start: new Date(),
-//     allDay: true,
-//     end: addHours(new Date(), 2),
-//     user: {
-//         _id: "123",
-//         name: "Alvaro"
-//     }
-// }
 
 export const calendarSlice = createSlice({
     name: 'calendar',
     initialState: {
         isLoadingEvents: true,
-        events: [
-            // tempEvent
-        ],
+        events: [],
         activeEvent: null,
     },
     reducers: {

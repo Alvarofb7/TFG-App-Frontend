@@ -1,4 +1,3 @@
-/* Modal */
 .ReactModalPortal>div {
     opacity: 0;
 }
@@ -60,4 +59,49 @@
 
 .btn-submit-modal {
     width: 100%;
+}
+
+.container-note-layout {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    height: 85vh;
+}
+
+.left {
+    width: 25vw;
+}
+
+.right {
+    width: 65vw;
+}
+
+.not-selected-note {
+    background-color: #6b8ebb;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid black;
+}
+
+.list-notes {
+    display: list-item;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 85vh;
+    padding: 20px;
+    background-color: #bbd8ff;
+    overflow-y: auto;
+    border: 1px solid black;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 49%;
+    margin: 5px;
 }

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar } from "../store";
+import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar, onLogoutNotes } from "../store";
 import { api } from "../api";
 import Swal from "sweetalert2";
 
@@ -22,8 +22,8 @@ export const useAuthStore = () => {
 
             dispatch(onLogin({ name: data.name, uid: data.uid }));
         } catch (error) {
-            dispatch(onLogout(error.response.data?.msg || "Credenciales incorrectas"));
-            Swal.fire("Error en registro", error.response.data?.msg || "Credenciales incorrectas", "error");
+            dispatch(onLogout(error.response?.data?.msg || "Credenciales incorrectas"));
+            Swal.fire("Error en registro", error.response?.data?.msg || "Credenciales incorrectas", "error");
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);
@@ -39,8 +39,8 @@ export const useAuthStore = () => {
 
             dispatch(onLogin({ name: data.name, uid: data.uid }));
         } catch (error) {
-            dispatch(onLogout(error.response.data?.msg || "Error en la creación de la cuenta"));
-            Swal.fire("Error en registro", error.response.data?.msg || "Error en la creación de la cuenta", "error");
+            dispatch(onLogout(error.response?.data?.msg || "Error en la creación de la cuenta"));
+            Swal.fire("Error en registro", error.response?.data?.msg || "Error en la creación de la cuenta", "error");
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);
@@ -67,6 +67,7 @@ export const useAuthStore = () => {
     const startLogout = () => {
         localStorage.clear();
         dispatch(onLogoutCalendar());
+        dispatch(onLogoutNotes());
         dispatch(onLogout());
     }
 
