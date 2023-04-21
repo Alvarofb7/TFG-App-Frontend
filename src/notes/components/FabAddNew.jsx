@@ -8,7 +8,7 @@ export const FabAddNew = () => {
         setActiveNote({
             title: "",
             description: "",
-            date: new Date(),
+            date: new Date(),   
             user: {}
         })
     }

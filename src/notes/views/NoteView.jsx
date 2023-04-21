@@ -4,11 +4,11 @@ import { useForm, useNoteStore } from "../../hooks"
 export const NoteView = () => {
 
     const { activeNote, startSavingNote, startDeletingNote } = useNoteStore();
-    const { onInputChange, _id, title, description, date, user } = useForm(activeNote);
+    const { onInputChange, title, description, date, formState } = useForm(activeNote);
 
     const onSubmit = (event) => {
         event.preventDefault();
-        startSavingNote({ _id, title, description, date, user });
+        startSavingNote(formState);
     }
 
     const dateString = useMemo(() => {

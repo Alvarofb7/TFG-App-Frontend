@@ -1,22 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const tempNote = {
-    _id: new Date().getTime(),
-    title:"TituloNota",
-    description:"DescripcionNota",
-    date: new Date(),
-    user: {
-        _id: "ABC",
-        name: "Alvaro"
-    }
-}
-
-
 export const notesSlice = createSlice({
     name: 'notes',
     initialState: {
         isLoadingNotes: true,
-        notes: [tempNote],
+        notes: [],
         activeNote: null,
     },
     reducers: {
@@ -31,23 +19,31 @@ export const notesSlice = createSlice({
             state.notes = payload;
         },
         onAddNewNote: (state, { payload }) => {
-            state.notes.push(payload);
+            state.notes = [payload, ...state.notes];
             state.activeNote = null;
         },
         onUpdateNote: (state, { payload }) => {
             state.notes = state.notes.map(note => {
-                if (note._id === payload._id) {
+                if (note.id === payload.id) {
                     return payload;
                 }
                 return note;
+            }).sort((a, b) => {
+                // Ordena por fecha descendente
+                return new Date(b.date) - new Date(a.date);
             });
             state.activeNote = null;
         },
         onDeleteNote: (state) => {
             if (state.activeNote) {
-                state.notes = state.notes.filter(note => note._id !== state.activeNote._id)
+                state.notes = state.notes.filter(note => note.id !== state.activeNote.id)
                 state.activeNote = null;
             }
+        },
+        onLogoutNotes: (state) => {
+            state.isLoadingNotes = true;
+            state.notes = [];
+            state.activeNote = null;
         }
     }
 });
@@ -55,6 +51,7 @@ export const {
     onAddNewNote,
     onClearActiveNote,
     onDeleteNote,
+    onLogoutNotes,
     onSetActiveNote,
     onSetNotes,
     onUpdateNote,

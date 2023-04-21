@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { useNoteStore } from "../../hooks";
 
-export const SideBarNote = ({ title = "", _id, description = "", date, user = {} }) => {
+export const SideBarNote = ({ title = "", id, description = "", date, user = {} }) => {
 
     const { setActiveNote } = useNoteStore();
 
@@ -19,11 +19,11 @@ export const SideBarNote = ({ title = "", _id, description = "", date, user = {}
 
     const setNote = () => {
 
-        setActiveNote({ _id, title, description, date, user });
+        setActiveNote({ id, title, description, date, user });
     };
 
     return (
-        <li className="card text-center mb-2" key={ _id } onClick={ setNote }>
+        <li className="list-group-item card text-center mb-2" key={ id } id={ id } onClick={ setNote }>
             <div className="card-header">
                 <p className="card-title">{ newTitle }</p>
             </div>
