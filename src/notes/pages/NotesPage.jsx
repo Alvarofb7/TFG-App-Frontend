@@ -15,8 +15,6 @@ export const NotesPage = () => {
                     ? <NoteView />
                     : <NotSelectedNoteView />
             }
-            <FabAddNew />
-
         </NotesLayout>
     )
 }

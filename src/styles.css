@@ -65,26 +65,40 @@
 /* Notes */
 .container-note-layout {
     display: flex;
-    justify-content: space-between;
-    /* gap: 16px; */
     height: 85vh;
+    /* flex-direction: row; */
+    /* flex-wrap: nowrap; */
+    flex-flow: row nowrap; /* Esto es lo mismo que usar flex-direction y flex-wrap por separado */
 }
-
-.btn-collapse-sidebar-note {
-    height: 15vh;
-}
+ 
 
 .left {
     display: flex;
+    flex-grow: 0;
     align-items: center;
-    width: 5vw;
-    height: 80vh;
 }
 
 .left-open {
     display: flex;
-    width: 25vw;
+    flex-grow: 1;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.right {
+    flex-grow: 5;
+    padding-right: 5vh;
+}
+
+.right-without-list {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 5vh;
+}
+
+.nav-list-notes {
+    display: flex;
+    width: 100%;
 }
 
 .list-notes {
@@ -95,34 +109,57 @@
     padding: 20px;
     background-color: #bbd8ff;
     overflow-y: auto;
-    border: 1px solid black;
+    width: 100%;
 }
 
-.right {
-    width: 65vw;
-    padding-right: 5vh;
-}
-
-.right-without-list {
-    width: 90vw;
-    padding-right: 5vh;
+.btn-collapse-sidebar-note {
+    height: 15vh;
 }
 
 .not-selected-note {
+    display: flex;
     background-color: #6b8ebb;
     height: 85vh;
     align-items: center;
     justify-content: center;
+}
+
+.note {
     display: flex;
-    border: 1px solid black;
+    flex-direction: column;
+    height: 85vh;
 }
 
 .buttons-notes {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
 
 .buttons button {
     width: 49%;
-    margin: 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .left {
+        display: flex;
+        flex-grow: 0;
+        align-items: center;
+    }
+    
+    .right-without-list {
+        display: flex;
+        flex-grow: 1;
+    }
+    
+    .left-open {
+        display: flex;
+        flex-grow: 1;
+    }
+    
+    .right{
+        display: none;
+    }
+    
 }

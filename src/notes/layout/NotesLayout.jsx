@@ -40,9 +40,9 @@ export const NotesLayout = ({ children }) => {
         <div className="container-note-layout">
             <div className={ (display === "none") ? "left" : "left-open" }>
                 <SideBar show={ display } />
-                <button className="btn btn-outline-primary btn-collapse-sidebar-note" role="button" onClick={ collapseList }>
+                <button className="btn btn-outline-secondary btn-collapse-sidebar-note" role="button" onClick={ collapseList }>
                     <i className={ `fa ${iconButton}` } data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
-                </button>
+                </button> 
             </div>
             <div className={ (display === "none") ? "right-without-list" : "right" }>
                 { children }

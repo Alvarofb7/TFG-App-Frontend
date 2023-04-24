@@ -63,7 +63,6 @@ export const NoteView = () => {
                             <span> Guardar</span>
                         </button>
                         {
-
                             (activeNote.id) && (
                                 <button
                                     type="button"
@@ -74,7 +73,6 @@ export const NoteView = () => {
                                     <i className="fa fa-trash"></i>
                                     <span> Eliminar</span>
                                 </button>
-
                             )
                         }
                     </div>
