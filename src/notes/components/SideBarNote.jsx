@@ -30,9 +30,13 @@ export const SideBarNote = ({ title = "", id, description = "", date, user = {} 
             <div className="card-header">
                 <p className="card-title">{ newTitle }</p>
             </div>
-            <div className="card-body">
-                <p className="card-subtitle mb-2 text-body-secondary">{ newDescription }</p>
-            </div>
+            {
+                newDescription && (
+                    <div className="card-body">
+                        <p className="card-subtitle mb-2 text-body-secondary">{ newDescription }</p>
+                    </div>
+                )
+            }
         </li>
     )
 }

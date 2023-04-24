@@ -1,3 +1,4 @@
+/* Calendar css*/
 .ReactModalPortal>div {
     opacity: 0;
 }
@@ -61,42 +62,62 @@
     width: 100%;
 }
 
+/* Notes */
 .container-note-layout {
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
+    /* gap: 16px; */
     height: 85vh;
+}
+
+.btn-collapse-sidebar-note {
+    height: 15vh;
 }
 
 .left {
-    width: 25vw;
-}
-
-.right {
-    width: 65vw;
-}
-
-.not-selected-note {
-    background-color: #6b8ebb;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
     display: flex;
-    border: 1px solid black;
+    align-items: center;
+    width: 5vw;
+    height: 80vh;
+}
+
+.left-open {
+    display: flex;
+    width: 25vw;
+    align-items: center;
 }
 
 .list-notes {
-    display: list-item;
+    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    height: 85vh;
+    flex-wrap: nowrap;
+    height: 80vh;
     padding: 20px;
     background-color: #bbd8ff;
     overflow-y: auto;
     border: 1px solid black;
 }
 
-.buttons {
+.right {
+    width: 65vw;
+    padding-right: 5vh;
+}
+
+.right-without-list {
+    width: 90vw;
+    padding-right: 5vh;
+}
+
+.not-selected-note {
+    background-color: #6b8ebb;
+    height: 85vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid black;
+}
+
+.buttons-notes {
     display: flex;
     justify-content: space-between;
 }
