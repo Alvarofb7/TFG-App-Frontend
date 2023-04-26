@@ -1,17 +1,17 @@
-import { useMemo, useState, useEffect } from "react";
-
-import { addHours, differenceInSeconds } from "date-fns";
-
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
-
 import Modal from "react-modal";
 
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import es from "date-fns/locale/es";
-import { useCalendarStore, useUiStore } from "../../hooks";
+import { useState } from "react";
+import { status } from "../interfaces/Status";
+import { addHours, differenceInSeconds } from "date-fns";
+import { useMemo } from "react";
+import Swal from "sweetalert2";
+import { useKanbanStore } from "../../hooks/useKanbanStore";
+import { useUiStore } from "../../hooks";
+import { useEffect } from "react";
 
 registerLocale("es", es);
 
@@ -28,32 +28,34 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export const CalendarModal = () => {
-  const { quitActiveEvent, activeEvent, startSavingEvent } = useCalendarStore();
-  const { isDateCalendarModalOpen, closeDateCalendarModal } = useUiStore();
+export const TaskModal = () => {
+  const { isKanbanModalOpen, closeKanbanModal } = useUiStore();
 
-  const [checked, setChecked] = useState(false);
+  const { activeTask, startAddNewTask, quitActiveTask } = useKanbanStore();
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
     title: "",
-    notes: "",
-    start: new Date(),
-    end: addHours(new Date(), 2),
+    description: "",
+    status: status.toDo,
+    finish: addHours(new Date(), 2),
+    user: {},
   });
+
+  useEffect(() => {
+    if (activeTask) {
+      setFormValues({
+        ...activeTask,
+      });
+    }
+  }, [activeTask]);
 
   const titleClass = useMemo(() => {
     if (!formSubmitted) return "";
 
     return formValues.title.length <= 0 && "is-invalid";
   }, [formValues.title, formSubmitted]);
-
-  useEffect(() => {
-    if (activeEvent) {
-      setFormValues({ ...activeEvent });
-      setChecked(activeEvent.allDay);
-    }
-  }, [activeEvent]);
 
   const onInputChange = ({ target }) => {
     setFormValues({
@@ -69,116 +71,110 @@ export const CalendarModal = () => {
     });
   };
 
-  const onCheckChange = () => {
-    setChecked(!checked);
-  };
-
-  const onCloseModal = () => {
-    closeDateCalendarModal();
-    quitActiveEvent();
+  const onSelectChanged = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      status: target.value,
+    });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     setFormSubmitted(true);
 
-    const difference = differenceInSeconds(formValues.end, formValues.start);
+    if (!Object.values(status).includes(formValues.status)) {
+      Swal.fire("Error", "Ese estado no está definido", "error");
+    }
+    const difference = differenceInSeconds(formValues.finish, new Date());
     if (isNaN(difference) || difference <= 0) {
       Swal.fire("Fechas incorrectas", "Revisar las fechas ingresadas", "error");
       return;
     }
-
     if (formValues.title.length <= 0) return;
-
-    formValues.allDay = checked;
-    // Guardar nota
-    startSavingEvent(formValues);
-    // Cerramos modal
-    closeDateModal();
+    // Guardar tarea
+    startAddNewTask(formValues);
+    // Cerrar modal
+    closeKanbanModal();
     // Limpiamos errores
     setFormSubmitted(false);
   };
 
+  const onCloseModal = () => {
+    closeKanbanModal();
+    quitActiveTask();
+  };
+
   return (
     <Modal
-      isOpen={isDateCalendarModalOpen}
+      isOpen={isKanbanModalOpen}
       onRequestClose={onCloseModal}
-      style={customStyles}
       className="modal"
+      style={customStyles}
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
-      <h1> Nuevo evento </h1>
+      <h1>Nueva tarea</h1>
+
       <hr />
       <form className="container" onSubmit={onSubmit}>
         <div className="form-group mb-2">
-          <label>Fecha y hora inicio</label>
-          <DatePicker
-            selected={formValues.start}
-            className="form-control"
-            onChange={(event) => onDateChanged(event, "start")}
-            dateFormat="Pp"
-            showTimeSelect
-            disabled={checked}
-            locale="es"
-            timeCaption="Hora"
-          />
+          <label>Estado</label>
+          <select
+            onChange={onSelectChanged}
+            className="form-select form-select-sm"
+            value={formValues.status}
+          >
+            {Object.keys(status).map((keyStatus) => (
+              <option key={keyStatus} value={status[keyStatus]}>
+                {status[keyStatus]}
+              </option>
+            ))}
+          </select>
         </div>
-
+        <hr />
         <div className="form-group mb-2">
           <label>Fecha y hora fin</label>
           <DatePicker
-            minDate={formValues.start}
-            selected={formValues.end}
+            selected={formValues.finish}
             className="form-control"
-            onChange={(event) => onDateChanged(event, "end")}
             dateFormat="Pp"
             showTimeSelect
-            disabled={checked}
             locale="es"
             timeCaption="Hora"
+            onChange={(event) => onDateChanged(event, "finish")}
           />
         </div>
-
         <hr />
         <div className="form-group mb-2">
-          <label>Titulo y notas</label>
+          <label>Título</label>
           <input
             type="text"
             className={`form-control ${titleClass}`}
-            placeholder="Título del evento"
+            // className="form-control"
+            placeholder="Título"
             name="title"
-            autoComplete="off"
+            autoComplete="false"
             value={formValues.title}
             onChange={onInputChange}
           />
         </div>
-
         <div className="form-group mb-2">
+          <label>Descripción tarea</label>
           <textarea
             type="text"
             className="form-control"
-            placeholder="Notas"
-            rows="5"
-            name="notes"
-            value={formValues.notes}
+            placeholder="Descripción de la tarea"
+            rows={4}
+            name="description"
+            autoComplete="false"
+            value={formValues.description}
             onChange={onInputChange}
-          ></textarea>
-        </div>
-
-        <div className="form-check mb-3">
-          <label className="form-check-label">¿Todo el día?</label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            checked={checked}
-            onChange={onCheckChange}
           />
         </div>
 
         <button
           type="submit"
-          className="btn btn-outline-primary btn-block btn-submit-modal"
+          className="btn btn-outline-primary btn-block btn-submit-modal mt-2"
         >
           <i className="far fa-save"></i>
           <span> Guardar</span>
