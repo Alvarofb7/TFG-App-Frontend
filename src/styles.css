@@ -153,14 +153,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
 }
 
 /* LAYOUT CARDS */
 .grid {
-	display: grid;
-	flex: 1;
-	grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
 	gap: 2rem;
 	padding: 0 2rem;
 	width: 100%;
@@ -169,30 +169,30 @@
 }
 
 .layout-cards {
-	display: flex;
+  display: flex;
 	flex-direction: column;
+  flex-grow: 1;
+  height: 80vh;
 	overflow-y: auto;
 	border: 2px solid #ffffff8c;
 	background-color: #1a1a1a;
 	color: #f2f2f2;
 	border-radius: 5px;
 	transition: all 0.3s linear;
-	position: relative;
+  width: 33.33%; /* establecer un ancho fijo */
 }
 
 .layout-cards-header {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	top: 0;
 	border-radius: 5px;
 	background-color: black;
-	text-align: center;
 	padding: 1rem 0;
 	font-weight: bold;
 	text-transform: capitalize;
 	position: sticky;
-	top: 0;
 }
+
 .layout-cards-header > p {
 	margin-left: auto;
 }
@@ -221,6 +221,7 @@
 	cursor: pointer;
 	animation: fadeIn 0.3s ease-in-out;
 	text-transform: capitalize;
+  width: 88%;
 }
 
 .card-container-expired {
@@ -231,6 +232,7 @@
 	cursor: pointer;
 	animation: fadeIn 0.3s ease-in-out;
 	text-transform: capitalize;
+  width: 88%;
 }
 
 @keyframes fadeIn {
@@ -266,16 +268,27 @@
 	text-decoration: line-through;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
+
 	.grid {
+    flex-wrap: wrap;
+    align-items: center;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
 	}
 
 	.layout-cards {
 		overflow-y: scroll;
-		height: 250px;
+    width: 100vw;
 		min-height: 150px;
 		max-height: 250px;
 	}
+
+  .card-container {
+    width: 90%;
+  }
+
+  .card-container-expired {
+    width: 90%;
+  }
 }
