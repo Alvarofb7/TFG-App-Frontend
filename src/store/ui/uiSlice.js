@@ -3,28 +3,28 @@ import { createSlice } from "@reduxjs/toolkit";
 export const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    isDateCalendarModalOpen: false,
+    isCalendarModalOpen: false,
     isKanbanModalOpen: false,
   },
   reducers: {
-    onOpenDateCalendarModal: (state) => {
-      state.isDateCalendarModalOpen = true;
+    onOpenCalendarModal: (state) => {
+      state.isCalendarModalOpen = true;
     },
-    onCloseDateCalendarModal: (state) => {
-      state.isDateCalendarModalOpen = false;
+    onCloseCalendarModal: (state) => {
+      state.isCalendarModalOpen = false;
     },
-    onOpenDateKanbanModal: (state) => {
+    onOpenKanbanModal: (state) => {
       state.isKanbanModalOpen = true;
     },
-    onCloseDateKanbanModal: (state) => {
+    onCloseKanbanModal: (state) => {
       state.isKanbanModalOpen = false;
     },
   },
 });
 
 export const {
-  onOpenDateKanbanModal,
-  onCloseDateKanbanModal,
-  onOpenDateCalendarModal,
-  onCloseDateCalendarModal,
+  onOpenCalendarModal,
+  onCloseCalendarModal,
+  onOpenKanbanModal,
+  onCloseKanbanModal,
 } = uiSlice.actions;

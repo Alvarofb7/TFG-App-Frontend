@@ -10,12 +10,32 @@
 	position: fixed;
 }
 
+.ReactModalPortal>div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity .2s ease-in-out;
+  z-index: 999;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
 .modal {
 	background: white;
 	border-radius: 5px;
 	color: rgb(0, 0, 0);
 	display: inline;
-	max-height: 570px;
+	max-height: 600px;
 	max-width: 500px;
 	outline: none;
 	padding: 10px;

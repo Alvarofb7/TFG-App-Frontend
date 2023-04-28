@@ -1,42 +1,42 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  onCloseDateCalendarModal,
-  onCloseDateKanbanModal,
-  onOpenDateCalendarModal,
-  onOpenDateKanbanModal,
+	onOpenCalendarModal,
+	onCloseCalendarModal,
+	onOpenKanbanModal,
+	onCloseKanbanModal,
 } from "../store";
 
 export const useUiStore = () => {
-  const dispatch = useDispatch();
-  const { isDateCalendarModalOpen, isKanbanModalOpen } = useSelector(
-    (state) => state.ui
-  );
+	const dispatch = useDispatch();
+	const { isCalendarModalOpen, isKanbanModalOpen } = useSelector(
+		(state) => state.ui
+	);
 
-  const openDateCalendarModal = () => {
-    dispatch(onOpenDateCalendarModal());
-  };
+	const openCalendarModal = () => {
+		dispatch(onOpenCalendarModal());
+	};
 
-  const closeDateCalendarModal = () => {
-    dispatch(onCloseDateCalendarModal());
-  };
+	const closeCalendarModal = () => {
+		dispatch(onCloseCalendarModal());
+	};
 
-  const openKanbanModal = () => {
-    dispatch(onOpenDateKanbanModal());
-  };
+	const openKanbanModal = () => {
+		dispatch(onOpenKanbanModal());
+	};
 
-  const closeKanbanModal = () => {
-    dispatch(onCloseDateKanbanModal());
-  };
+	const closeKanbanModal = () => {
+		dispatch(onCloseKanbanModal());
+	};
 
-  return {
-    //* Propiedades
-    isDateCalendarModalOpen,
-    isKanbanModalOpen,
+	return {
+		//* Propiedades
+		isCalendarModalOpen,
+		isKanbanModalOpen,
 
-    //* Métodos
-    openDateCalendarModal,
-    closeDateCalendarModal,
-    openKanbanModal,
-    closeKanbanModal,
-  };
+		//* Métodos
+		openCalendarModal,
+		closeCalendarModal,
+		openKanbanModal,
+		closeKanbanModal,
+	};
 };
