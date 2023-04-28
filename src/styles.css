@@ -146,21 +146,21 @@
 
 /* Kanban */
 .container-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	font-family: "Montserrat", sans-serif;
 	font-weight: normal;
 	min-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 /* LAYOUT CARDS */
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 80vh;
 	gap: 2rem;
 	padding: 0 2rem;
 	width: 100%;
@@ -169,17 +169,16 @@
 }
 
 .layout-cards {
-  display: flex;
+	display: flex;
 	flex-direction: column;
-  flex-grow: 1;
-  height: 80vh;
+	flex-grow: 1;
+	height: 80vh;
+	width: 33.33%; 
 	overflow-y: auto;
 	border: 2px solid #ffffff8c;
 	background-color: #1a1a1a;
 	color: #f2f2f2;
 	border-radius: 5px;
-	transition: all 0.3s linear;
-  width: 33.33%; /* establecer un ancho fijo */
 }
 
 .layout-cards-header {
@@ -204,7 +203,7 @@
 
 .layout-cards-header > button {
 	margin-left: auto;
-	margin-right: 4%;
+	margin-right: 10%;
 }
 
 .layout-dragging {
@@ -214,37 +213,23 @@
 
 /* SINGLE CARD */
 .card-container {
-	margin: 1rem 1rem 0 1rem;
+	margin: 0.5rem 1rem 0.5rem 1rem;
 	background-color: slateblue;
 	border-radius: 5px;
 	padding: 1rem;
 	cursor: pointer;
-	animation: fadeIn 0.3s ease-in-out;
 	text-transform: capitalize;
-  width: 88%;
+	width: 88%;
 }
 
 .card-container-expired {
-	margin: 1rem 1rem 0 1rem;
+	margin: 0.5rem 1rem 0.5rem 1rem;
 	background-color: rgb(179, 46, 46);
 	border-radius: 5px;
 	padding: 1rem;
 	cursor: pointer;
-	animation: fadeIn 0.3s ease-in-out;
 	text-transform: capitalize;
-  width: 88%;
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+	width: 88%;
 }
 
 .card-container > p {
@@ -263,32 +248,29 @@
 }
 
 .done > h5 {
-	font-weight: bold;
-	font-size: 1rem;
 	text-decoration: line-through;
 }
 
 @media screen and (max-width: 600px) {
-
 	.grid {
-    flex-wrap: wrap;
-    align-items: center;
+		flex-wrap: wrap;
+		align-items: center;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
 	}
 
 	.layout-cards {
 		overflow-y: scroll;
-    width: 100vw;
+		width: 100vw;
 		min-height: 150px;
 		max-height: 250px;
 	}
 
-  .card-container {
-    width: 90%;
-  }
+	.card-container {
+		width: 90%;
+	}
 
-  .card-container-expired {
-    width: 90%;
-  }
+	.card-container-expired {
+		width: 90%;
+	}
 }

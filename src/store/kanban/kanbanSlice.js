@@ -1,32 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addHours } from "date-fns";
 import { status } from "../../kanban/interfaces/Status";
-
-const tempTask = {
-	id: new Date().getTime(),
-	title: "Prueba titulo",
-	description: "Prueba descripcion",
-	status: status.inPogress,
-	finish: addHours(new Date(), 2),
-	user: {
-		id: "ABC",
-		name: "Alvaro",
-	},
-};
 
 export const kanbanSlice = createSlice({
 	name: "kanban",
 	initialState: {
 		activeTask: null,
-		isLoadingTasks: true,
-		tasks: [
-			// tempTask
-		],
+		tasks: [],
 	},
 	reducers: {
 		onLoadTasks: (state, { payload }) => {
 			state.tasks = payload;
-			state.isLoadingTasks = false;
 		},
 		onSetActiveTask: (state, { payload }) => {
 			state.activeTask = payload;
@@ -51,6 +34,10 @@ export const kanbanSlice = createSlice({
 		onDeleteAllTasksDone: (state) => {
 			state.tasks = state.tasks.filter((task) => task.status !== status.done);
 		},
+    onLogoutKanban: (state) => {
+      state.activeTask= null;
+      state.tasks= [];
+    },
 	},
 });
 
@@ -60,6 +47,7 @@ export const {
 	onDeleteTask,
 	onQuitActiveTask,
 	onLoadTasks,
+  onLogoutKanban,
 	onSetActiveTask,
 	onUpdateTask,
 } = kanbanSlice.actions;

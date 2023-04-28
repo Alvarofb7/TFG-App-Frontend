@@ -1,33 +1,42 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { DragDropContext } from "react-beautiful-dnd";
+
 import { status } from "../interfaces/Status";
 import { ContainerCards } from "./ContainerCards";
-import { useDragAndDrop } from "../hooks";
-import { useEffect } from "react";
 import { useKanbanStore } from "../../hooks/useKanbanStore";
 
 export const DragAndDrop = () => {
-	const { startLoadingTasks } = useKanbanStore();
+	const { startLoadingTasks, updateTask } = useKanbanStore();
+
 	const { tasks } = useSelector((state) => state.kanban);
 
 	useEffect(() => {
 		startLoadingTasks();
 	}, []);
 
-	const { listItems, isDragging, handleDragging, handleUpdateList } =
-		useDragAndDrop(tasks);
+	const handleOnDragEnd = async (result) => {
+		if (!result.destination) return;
+		const task = tasks.find((task) => task.id === result.draggableId);
+		if (!task) return;
+		const updatedTask = {
+			...task,
+			status: result.destination.droppableId,
+		};
+		await updateTask(updatedTask);
+	};
 
 	return (
 		<div className="grid">
-			{Object.keys(status).map((containerKey) => (
-				<ContainerCards
-					status={status[containerKey]}
-					items={listItems}
-					key={containerKey}
-					isDragging={isDragging}
-					handleDragging={handleDragging}
-					handleUpdateList={handleUpdateList}
-				/>
-			))}
+			<DragDropContext onDragEnd={handleOnDragEnd}>
+				{Object.keys(status).map((containerKey) => (
+					<ContainerCards
+						status={status[containerKey]}
+						items={tasks}
+						key={containerKey}
+					/>
+				))}
+			</DragDropContext>
 		</div>
 	);
 };

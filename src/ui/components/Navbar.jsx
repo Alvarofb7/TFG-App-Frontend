@@ -3,7 +3,7 @@ import { useAuthStore } from "../../hooks";
 import { useState } from "react";
 
 export const Navbar = () => {
-  const { status, user, startLogout } = useAuthStore();
+  const { status, startLogout } = useAuthStore();
 
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
