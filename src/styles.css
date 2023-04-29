@@ -1,107 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap");
+
+/* Calendar css*/
+.modal-fondo {
+	background-color: rgba(0, 0, 0, 0.3);
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	position: fixed;
+}
+
 .ReactModalPortal>div {
-    opacity: 0;
+  opacity: 0;
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    transition: opacity .2s ease-in-out;
-    z-index: 999;
-}
-
-.modal-fondo {
-    background-color: rgba(0, 0, 0, 0.3);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity .2s ease-in-out;
+  z-index: 999;
 }
 
 .ReactModalPortal .ReactModal__Overlay--after-open {
-    opacity: 1;
+  opacity: 1;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
-    opacity: 0;
+  opacity: 0;
 }
 
 .modal {
-    background: white;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    display: inline;
-    max-height: 620px;
-    max-width: 500px;
-    outline: none;
-    padding: 10px;
+	background: white;
+	border-radius: 5px;
+	color: rgb(0, 0, 0);
+	display: inline;
+	max-height: 600px;
+	max-width: 500px;
+	outline: none;
+	padding: 10px;
 }
 
 .fab {
-    border-radius: 100%;
-    bottom: 25px;
-    font-size: 20px;
-    padding: 25px;
-    position: fixed;
-    right: 25px;
+	border-radius: 100%;
+	bottom: 25px;
+	font-size: 20px;
+	padding: 25px;
+	position: fixed;
+	right: 25px;
 }
 
 .fab-delete {
-    border-radius: 100%;
-    bottom: 25px;
-    font-size: 20px;
-    position: fixed;
-    left: 25px;
-    width: 70px;
-    height: 70px;
+	border-radius: 100%;
+	bottom: 25px;
+	font-size: 20px;
+	position: fixed;
+	left: 25px;
+	width: 70px;
+	height: 70px;
 }
 
 .btn-submit-modal {
-    width: 100%;
+	width: 100%;
 }
 
+/* Notes */
 .container-note-layout {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    height: 85vh;
+	display: flex;
+	height: 90vh;
+	flex-flow: row nowrap; /* Esto es lo mismo que usar flex-direction y flex-wrap por separado */
+	align-items: center;
 }
 
 .left {
-    width: 25vw;
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+}
+
+.left-open {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: flex-start;
 }
 
 .right {
-    width: 65vw;
+	flex-grow: 5;
+	padding-right: 5vh;
 }
 
-.not-selected-note {
-    background-color: #6b8ebb;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    border: 1px solid black;
+.right-without-list {
+	display: flex;
+	flex-grow: 1;
+	padding-right: 5vh;
+}
+
+.nav-list-notes {
+	display: flex;
+	width: 100%;
 }
 
 .list-notes {
-    display: list-item;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 85vh;
-    padding: 20px;
-    background-color: #bbd8ff;
-    overflow-y: auto;
-    border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	height: 80vh;
+	padding: 20px;
+	background-color: #bbd8ff;
+	overflow-y: auto;
+	width: 100%;
+	cursor: pointer;
 }
 
-.buttons {
-    display: flex;
-    justify-content: space-between;
+.btn-collapse-sidebar-note {
+	height: 15vh;
+}
+
+.not-selected-note {
+	display: flex;
+	background-color: #6b8ebb;
+	height: 85vh;
+	align-items: center;
+	justify-content: center;
+}
+
+.note {
+	display: flex;
+	flex-direction: column;
+	height: 85vh;
+}
+
+.buttons-notes {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
 .buttons button {
-    width: 49%;
-    margin: 5px;
+	width: 49%;
+}
+
+@media screen and (max-width: 500px) {
+	.left {
+		display: flex;
+		flex-grow: 0;
+		align-items: center;
+	}
+
+	.right-without-list {
+		display: flex;
+		flex-grow: 1;
+	}
+
+	.left-open {
+		display: flex;
+		flex-grow: 1;
+	}
+
+	.right {
+		display: none;
+	}
+}
+
+/* Kanban */
+.container-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: "Montserrat", sans-serif;
+	font-weight: normal;
+	min-height: 90vh;
+}
+
+/* LAYOUT CARDS */
+.grid {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 80vh;
+	gap: 2rem;
+	padding: 0 2rem;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.layout-cards {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	height: 80vh;
+	width: 33.33%; 
+	overflow-y: auto;
+	border: 2px solid #ffffff8c;
+	background-color: #1a1a1a;
+	color: #f2f2f2;
+	border-radius: 5px;
+}
+
+.layout-cards-header {
+	display: flex;
+	top: 0;
+	border-radius: 5px;
+	background-color: black;
+	padding: 1rem 0;
+	font-weight: bold;
+	text-transform: capitalize;
+	position: sticky;
+}
+
+.layout-cards-header > p {
+	margin-left: auto;
+}
+
+.layout-cards-header:not(:has(button)) > p {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.layout-cards-header > button {
+	margin-left: auto;
+	margin-right: 10%;
+}
+
+.layout-dragging {
+	background: #000000ce;
+	border: 2px dashed #ffffff8c;
+}
+
+/* SINGLE CARD */
+.card-container {
+	margin: 0.5rem 1rem 0.5rem 1rem;
+	background-color: slateblue;
+	border-radius: 5px;
+	padding: 1rem;
+	cursor: pointer;
+	text-transform: capitalize;
+	width: 88%;
+}
+
+.card-container-expired {
+	margin: 0.5rem 1rem 0.5rem 1rem;
+	background-color: rgb(179, 46, 46);
+	border-radius: 5px;
+	padding: 1rem;
+	cursor: pointer;
+	text-transform: capitalize;
+	width: 88%;
+}
+
+.card-container > p {
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+.card-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.card-title > h5 {
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+.done > h5 {
+	text-decoration: line-through;
+}
+
+@media screen and (max-width: 600px) {
+	.grid {
+		flex-wrap: wrap;
+		align-items: center;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	.layout-cards {
+		overflow-y: scroll;
+		width: 100vw;
+		min-height: 150px;
+		max-height: 250px;
+	}
+
+	.card-container {
+		width: 90%;
+	}
+
+	.card-container-expired {
+		width: 90%;
+	}
 }

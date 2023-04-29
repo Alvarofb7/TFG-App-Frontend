@@ -1,9 +1,9 @@
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useNoteStore } from "../../hooks";
 
 export const SideBarNote = ({ title = "", id, description = "", date, user = {} }) => {
 
-    const { setActiveNote } = useNoteStore();
+    const { activeNote, setActiveNote, clearActiveNote } = useNoteStore();
 
     const newTitle = useMemo(() => {
         return title.length > 15
@@ -18,8 +18,11 @@ export const SideBarNote = ({ title = "", id, description = "", date, user = {} 
     }, [description]);
 
     const setNote = () => {
-
-        setActiveNote({ id, title, description, date, user });
+        if (activeNote?.id === id) {
+            clearActiveNote()
+        } else {
+            setActiveNote({ id, title, description, date, user });
+        }
     };
 
     return (
@@ -27,9 +30,13 @@ export const SideBarNote = ({ title = "", id, description = "", date, user = {} 
             <div className="card-header">
                 <p className="card-title">{ newTitle }</p>
             </div>
-            <div className="card-body">
-                <p className="card-subtitle mb-2 text-body-secondary">{ newDescription }</p>
-            </div>
+            {
+                newDescription && (
+                    <div className="card-body">
+                        <p className="card-subtitle mb-2 text-body-secondary">{ newDescription }</p>
+                    </div>
+                )
+            }
         </li>
     )
 }

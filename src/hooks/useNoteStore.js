@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onAddNewNote, onDeleteNote, onSetActiveNote, onSetNotes, onUpdateNote } from "../store";
+import { onAddNewNote, onClearActiveNote, onDeleteNote, onSetActiveNote, onSetNotes, onUpdateNote } from "../store";
 import { api } from "../api";
 import { convertNotesToDateNotes } from "../helpers";
 import Swal from "sweetalert2";
@@ -31,12 +31,15 @@ export const useNoteStore = () => {
         try {
             if (note.id) {
                 // Actualizamos la fecha con la última modificación
-                note.date = new Date();
-
+                const updatedNote = {
+                    ...note,
+                    date: new Date()
+                }
+                
                 // Actualizando
-                await api.put(`/notes/${note.id}`, note);
+                await api.put(`/notes/${note.id}`, updatedNote);
 
-                dispatch(onUpdateNote({ ...note }));
+                dispatch(onUpdateNote({ ...updatedNote }));
             } else {
                 // Creando
                 const { data } = await api.post("/notes", note);
@@ -60,6 +63,10 @@ export const useNoteStore = () => {
         }
     }
 
+    const clearActiveNote = () => {
+        dispatch(onClearActiveNote())
+    }
+
     return {
         //* Properties
         activeNote,
@@ -67,6 +74,7 @@ export const useNoteStore = () => {
         notes,
 
         //* Methods
+        clearActiveNote,
         setActiveNote,
         startDeletingNote,
         startLoadingNote,

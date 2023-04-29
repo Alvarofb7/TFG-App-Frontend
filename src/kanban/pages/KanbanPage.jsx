@@ -1,8 +1,11 @@
+import { DragAndDrop } from "../components";
+import { TaskModal } from "../components/TaskModal";
 
 export const KanbanPage = () => {
-    return (
-        <>
-            <h1>KanbanPage</h1>
-        </>
-    )
-}
+	return (
+		<div className="container-main">
+			<DragAndDrop />
+			<TaskModal />
+		</div>
+	);
+};

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useForm, useNoteStore } from "../../hooks"
+import Swal from "sweetalert2";
 
 export const NoteView = () => {
 
@@ -8,6 +9,9 @@ export const NoteView = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
+        if (title.length < 1) {
+            return Swal.fire("Error", "No puedes dejar el título vacío", "error")
+        }
         startSavingNote(formState);
     }
 
@@ -50,7 +54,7 @@ export const NoteView = () => {
                         >
                         </textarea>
                     </div>
-                    <div className="buttons">
+                    <div className="buttons-notes">
                         <button
                             type="submit"
                             className="btn btn-outline-primary btn-block btn-submit-addNote"
@@ -58,19 +62,22 @@ export const NoteView = () => {
                             <i className="far fa-save"></i>
                             <span> Guardar</span>
                         </button>
-                        <button
-                            type="button"
-                            onClick={deleteNote}
-                            className="btn btn-outline-danger btn-block btn-submit-deleteNote"
-                        >
-                            <i className="fa fa-trash"></i>
-                            <span> Eliminar</span>
-                        </button>
+                        {
+                            (activeNote.id) && (
+                                <button
+                                    type="button"
+                                    onClick={ deleteNote }
+
+                                    className="btn btn-outline-danger btn-block btn-submit-deleteNote"
+                                >
+                                    <i className="fa fa-trash"></i>
+                                    <span> Eliminar</span>
+                                </button>
+                            )
+                        }
                     </div>
                 </form>
             </div>
-
-
         </div>
     )
 }

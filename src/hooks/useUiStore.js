@@ -1,27 +1,42 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onCloseDateModal, onOpenDateModal } from "../store";
+import {
+	onOpenCalendarModal,
+	onCloseCalendarModal,
+	onOpenKanbanModal,
+	onCloseKanbanModal,
+} from "../store";
 
 export const useUiStore = () => {
+	const dispatch = useDispatch();
+	const { isCalendarModalOpen, isKanbanModalOpen } = useSelector(
+		(state) => state.ui
+	);
 
-    const dispatch = useDispatch();
-    const { isDateModalOpen } = useSelector(state => state.ui);
+	const openCalendarModal = () => {
+		dispatch(onOpenCalendarModal());
+	};
 
-    const openDateModal = () => {
-        dispatch(onOpenDateModal());
-    };
+	const closeCalendarModal = () => {
+		dispatch(onCloseCalendarModal());
+	};
 
-    const closeDateModal = () => {
-        dispatch(onCloseDateModal());
-    };
+	const openKanbanModal = () => {
+		dispatch(onOpenKanbanModal());
+	};
 
-    return {
-        //* Propiedades
-        isDateModalOpen,
+	const closeKanbanModal = () => {
+		dispatch(onCloseKanbanModal());
+	};
 
-        //* Métodos
-        openDateModal,
-        closeDateModal,
-    }
+	return {
+		//* Propiedades
+		isCalendarModalOpen,
+		isKanbanModalOpen,
 
-}
-
+		//* Métodos
+		openCalendarModal,
+		closeCalendarModal,
+		openKanbanModal,
+		closeKanbanModal,
+	};
+};
