@@ -54,8 +54,6 @@ export const CalendarModal = () => {
 		}
 	}, [activeEvent]);
 
-	console.log(formValues);
-
 	const onInputChange = ({ target }) => {
 		setFormValues({
 			...formValues,

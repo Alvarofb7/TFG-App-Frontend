@@ -40,13 +40,11 @@ export const CalendarPage = () => {
 
 	const onSelect = (event) => {
 		setActiveEvent(event);
-		// setSelectedEventId(event.id);
 		openCalendarModal();
 	};
 
 	const onSelectEmptySlot = () => {
 		quitActiveEvent();
-		// setSelectedEventId(null);
 	};
 
 	const onViewChanged = (event) => {
@@ -58,23 +56,23 @@ export const CalendarPage = () => {
 		<>
 			<Calendar
 				selectable
-				dayLayoutAlgorithm="no-overlap" // Evitamos que se solapen los eventos
-				culture="es" // Calendario en español
-				localizer={localizer} // Usamos datefns
-				events={events} // Eventos
-				defaultView={lastView} // Vista por defecto
+				dayLayoutAlgorithm="no-overlap"
+				culture="es"
+				localizer={localizer}
+				events={events}
+				defaultView={lastView}
 				startAccessor="start"
 				endAccessor="end"
-				style={{ height: "calc(100vh - 70px)", marginTop: "10px" }} // Estilo del calendario
-				messages={getMessagesES()} // Colocamos los mensajes a español
-				eventPropGetter={eventStyleGetter} // Estilo eventos
+				style={{ height: "calc(100vh - 70px)", marginTop: "10px" }}
+				messages={getMessagesES()}
+				eventPropGetter={eventStyleGetter}
 				components={{
 					event: CalendarEvent,
 				}}
-				onSelectEvent={onSelect} // Acción al hacer click al evento
+				onSelectEvent={onSelect}
 				onSelectSlot={onSelectEmptySlot}
-				onView={onViewChanged} // Establece la última pestaña vista
-				popup // Aplica "Ver más"
+				onView={onViewChanged}
+				popup
 			/>
 
 			<CalendarModal />
