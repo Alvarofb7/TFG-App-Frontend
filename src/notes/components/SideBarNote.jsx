@@ -1,42 +1,47 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
+
 import { useNoteStore } from "../../hooks";
 
-export const SideBarNote = ({ title = "", id, description = "", date, user = {} }) => {
+export const SideBarNote = ({
+	title = "",
+	id,
+	description = "",
+	date = new Date(),
+	user = {},
+}) => {
+	const { activeNote, setActiveNote, setActiveNewNote } = useNoteStore();
 
-    const { activeNote, setActiveNote, clearActiveNote } = useNoteStore();
+	const setNote = () => {
+		if (activeNote?.id === id) {
+			setActiveNewNote();
+		} else {
+			setActiveNote({ id, title, description, date, user });
+		}
+	};
 
-    const newTitle = useMemo(() => {
-        return title.length > 15
-            ? title.substring(0, 15).concat("...")
-            : title
-    }, [title]);
+	const newTitle = useMemo(() => {
+		return title.length > 15 ? title.substring(0, 15).concat("...") : title;
+	}, [title]);
 
-    const newDescription = useMemo(() => {
-        return description.length > 15
-            ? description.substring(0, 15).concat("...")
-            : description
-    }, [description]);
+	const dateString = useMemo(() => {
+		const newDate = new Date(date);
+		return new Intl.DateTimeFormat("es-ES", { dateStyle: "medium" }).format(
+			newDate
+		);
+	}, [date]);
 
-    const setNote = () => {
-        if (activeNote?.id === id) {
-            clearActiveNote()
-        } else {
-            setActiveNote({ id, title, description, date, user });
-        }
-    };
-
-    return (
-        <li className="list-group-item card text-center mb-2" key={ id } id={ id } onClick={ setNote }>
-            <div className="card-header">
-                <p className="card-title">{ newTitle }</p>
-            </div>
-            {
-                newDescription && (
-                    <div className="card-body">
-                        <p className="card-subtitle mb-2 text-body-secondary">{ newDescription }</p>
-                    </div>
-                )
-            }
-        </li>
-    )
-}
+	return (
+		<li
+			className="list-group-item mb-1 text-center"
+			key={id}
+			id={id}
+			onClick={setNote}
+		>
+			<div className="card-body">
+				<p className="card-text">
+					<b>{newTitle}</b> - {dateString}
+				</p>
+			</div>
+		</li>
+	);
+};

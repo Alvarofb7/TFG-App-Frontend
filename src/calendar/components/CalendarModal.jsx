@@ -78,7 +78,12 @@ export const CalendarModal = () => {
 	};
 
 	const handleDelete = () => {
+    // Borramos nota
 		startDeletingEvent();
+    // Cerramos modal
+		closeCalendarModal();
+		// Limpiamos errores
+		setFormSubmitted(false);
 	};
 
 	const onSubmit = (event) => {
@@ -164,6 +169,7 @@ export const CalendarModal = () => {
 						placeholder="Notas"
 						rows="5"
 						name="notes"
+						maxLength={100}
 						value={formValues.notes}
 						onChange={onInputChange}
 					></textarea>

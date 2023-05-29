@@ -1,5 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap");
 
+:root {
+	--clr-primary-1: hsl(205, 86%, 17%);
+	--clr-primary-2: hsl(205, 77%, 27%);
+	--clr-primary-3: hsl(205, 72%, 37%);
+	--clr-primary-4: hsl(205, 63%, 48%);
+	--clr-primary-5: #49a6e9;
+	--clr-primary-6: hsl(205, 89%, 70%);
+	--clr-primary-7: hsl(205, 90%, 76%);
+	--clr-primary-8: hsl(205, 86%, 81%);
+	--clr-primary-9: hsl(205, 90%, 88%);
+	--clr-primary-10: hsl(205, 100%, 96%);
+	--clr-grey-1: hsl(209, 61%, 16%);
+	--clr-grey-2: hsl(211, 39%, 23%);
+	--clr-grey-3: hsl(209, 34%, 30%);
+	--clr-grey-4: hsl(209, 28%, 39%);
+	--clr-grey-5: hsl(210, 22%, 49%);
+	--clr-grey-6: hsl(209, 23%, 60%);
+	--clr-grey-7: hsl(211, 27%, 70%);
+	--clr-grey-8: hsl(210, 31%, 80%);
+	--clr-grey-9: hsl(212, 33%, 89%);
+	--clr-grey-10: hsl(210, 36%, 96%);
+	--clr-white: #fff;
+	--clr-red-dark: hsl(360, 67%, 44%);
+	--clr-red-light: hsl(360, 71%, 66%);
+	--clr-green-dark: hsl(125, 67%, 44%);
+	--clr-green-light: hsl(125, 71%, 66%);
+	--clr-secondary: hsla(182, 63%, 54%);
+	--clr-section-1: hsla(181.611, 63%, 54%, 0.5);
+	--clr-section-2: hsla(182, 63%, 54%, 0.719);
+	--clr-section-3: hsla(182, 63%, 54%, 0.219);
+	--clr-black: #222;
+	--clr-black-2: #1a1a1a;
+	--ff-primary: "Montserrat", sans-serif;
+	--ff-seconday-1: "Roboto", sans-serif;
+	--ff-secondary-2: "Open Sans", sans-serif;
+	--transition: all 0.3s linear;
+	--spacing: 0.25rem;
+	--radius: 0.5rem;
+	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	--max-width: 1170px;
+	--fixed-width: 620px;
+}
+
 /* Calendar css*/
 .modal-fondo {
 	background-color: rgba(0, 0, 0, 0.3);
@@ -10,24 +54,24 @@
 	position: fixed;
 }
 
-.ReactModalPortal>div {
-  opacity: 0;
+.ReactModalPortal > div {
+	opacity: 0;
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  transition: opacity .2s ease-in-out;
-  z-index: 999;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	transition: opacity 0.2s ease-in-out;
+	z-index: 999;
 }
 
 .ReactModalPortal .ReactModal__Overlay--after-open {
-  opacity: 1;
+	opacity: 1;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
-  opacity: 0;
+	opacity: 0;
 }
 
 .modal {
@@ -39,6 +83,7 @@
 	max-width: 500px;
 	outline: none;
 	padding: 10px;
+	font-family: var(--ff-primary);
 }
 
 .fab {
@@ -56,28 +101,34 @@
 
 /* Notes */
 .container-note-layout {
-	display: flex;
-	height: 90vh;
-	flex-flow: row nowrap; /* Esto es lo mismo que usar flex-direction y flex-wrap por separado */
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	height: calc(100vh - 60px);
+	/* flex-flow: row nowrap; Esto es lo mismo que usar flex-direction y flex-wrap por separado */
 	align-items: center;
+	background: var(--clr-grey-9);
+	font-family: var(--ff-primary);
+}
+
+.left-open {
+	display: flex;
+	flex-direction: row;
+	/* margin: 2rem 0; */
+	/* flex-grow: 1; */
+	align-items: center;
+	/* justify-content: flex-start; */
+}
+
+.right {
+	display: flex;
+	/* flex-grow: 5; */
+	padding-right: 2rem;
 }
 
 .left {
 	display: flex;
 	flex-grow: 0;
 	align-items: center;
-}
-
-.left-open {
-	display: flex;
-	flex-grow: 1;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-.right {
-	flex-grow: 5;
-	padding-right: 5vh;
 }
 
 .right-without-list {
@@ -88,7 +139,31 @@
 
 .nav-list-notes {
 	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
 	width: 100%;
+}
+
+.list-note-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 0.5rem;
+	width: 100%;
+}
+
+.btn-create-note {
+	top: 0;
+	width: 90%;
+	background: var(--clr-white);
+	color: var(--clr-grey-5);
+	border: 1px solid var(--clr-black-2);
+}
+
+.btn-create-note:hover {
+	background: var(--clr-grey-5);
+	color: var(--clr-white);
+	border: 1px solid var(--clr-black-2);
 }
 
 .list-notes {
@@ -97,19 +172,31 @@
 	flex-wrap: nowrap;
 	height: 80vh;
 	padding: 20px;
-	background-color: #bbd8ff;
+	background: var(--clr-grey-3);
 	overflow-y: auto;
 	width: 100%;
 	cursor: pointer;
 }
 
+.list-group-item {
+	width: 100%;
+}
+
 .btn-collapse-sidebar-note {
+	background: var(--clr-white);
+	color: var(--clr-grey-4);
+	height: 15vh;
+}
+
+.btn-collapse-sidebar-note:hover {
+	background: var(--clr-grey-4);
+	color: var(--clr-white);
 	height: 15vh;
 }
 
 .not-selected-note {
 	display: flex;
-	background-color: #6b8ebb;
+	background: var(--clr-grey-5);
 	height: 85vh;
 	align-items: center;
 	justify-content: center;
@@ -123,13 +210,13 @@
 
 .buttons-notes {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-between;
+	gap: 1rem;
 }
 
-.buttons button {
-	width: 49%;
+.buttons-notes button {
+	width: 100%;
 }
 
 @media screen and (max-width: 500px) {
@@ -155,18 +242,17 @@
 }
 
 /* Kanban */
-.container-main {
+.kanban-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-family: "Montserrat", sans-serif;
-	font-weight: normal;
-	min-height: 90vh;
+	min-height: calc(100vh - 60px);
+	font-family: var(--ff-primary);
+	background: var(--clr-grey-9);
 }
 
-/* LAYOUT CARDS */
-.grid {
+.kanban-columns {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -181,21 +267,22 @@
 .layout-cards {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	flex-grow: 1;
 	height: 80vh;
-	width: 33.33%; 
 	overflow-y: auto;
-	border: 2px solid #ffffff8c;
-	background-color: #1a1a1a;
-	color: #f2f2f2;
+	border: 2px solid var(--clr-grey-8);
+	background-color: var(--clr-black-2);
+	color: var(--clr-white);
 	border-radius: 5px;
 }
 
 .layout-cards-header {
 	display: flex;
 	top: 0;
+	width: 100%;
 	border-radius: 5px;
-	background-color: black;
+	background-color: var(--clr-black);
 	padding: 1rem 0;
 	font-weight: bold;
 	text-transform: capitalize;
@@ -216,15 +303,10 @@
 	margin-right: 10%;
 }
 
-.layout-dragging {
-	background: #000000ce;
-	border: 2px dashed #ffffff8c;
-}
-
 /* SINGLE CARD */
 .card-container {
-	margin: 0.5rem 1rem 0.5rem 1rem;
-	background-color: slateblue;
+	margin: 0.5rem 1rem;
+	background-color: var(--clr-primary-4);
 	border-radius: 5px;
 	padding: 1rem;
 	cursor: pointer;
@@ -234,7 +316,7 @@
 
 .card-container-expired {
 	margin: 0.5rem 1rem 0.5rem 1rem;
-	background-color: rgb(179, 46, 46);
+	background-color: var(--clr-red-dark);
 	border-radius: 5px;
 	padding: 1rem;
 	cursor: pointer;
@@ -262,7 +344,7 @@
 }
 
 @media screen and (max-width: 600px) {
-	.grid {
+	.kanban-columns {
 		flex-wrap: wrap;
 		align-items: center;
 		grid-template-columns: 1fr;
@@ -283,4 +365,19 @@
 	.card-container-expired {
 		width: 90%;
 	}
+}
+
+.navbar-logo {
+	height: 40px;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	font-family: var(--ff-primary);
+}
+
+.navbar-collapse {
+	justify-content: space-between;
+	padding-left: 1rem;
 }

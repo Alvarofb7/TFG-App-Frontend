@@ -63,7 +63,7 @@ export const CalendarPage = () => {
 				defaultView={lastView}
 				startAccessor="start"
 				endAccessor="end"
-				style={{ height: "calc(100vh - 70px)", marginTop: "10px" }}
+				style={{ height: "calc(100vh - 70px)", marginTop: "10px", fontFamily: "Montserrat" }}
 				messages={getMessagesES()}
 				eventPropGetter={eventStyleGetter}
 				components={{

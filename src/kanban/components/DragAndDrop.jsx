@@ -27,7 +27,7 @@ export const DragAndDrop = () => {
 	};
 
 	return (
-		<div className="grid">
+		<div className="kanban-columns">
 			<DragDropContext onDragEnd={handleOnDragEnd}>
 				{Object.keys(status).map((containerKey) => (
 					<ContainerCards
