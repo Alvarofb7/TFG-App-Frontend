@@ -27,7 +27,8 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const CalendarModal = () => {
-	const { quitActiveEvent, activeEvent, startSavingEvent, startDeletingEvent } = useCalendarStore();
+	const { quitActiveEvent, activeEvent, startSavingEvent, startDeletingEvent } =
+		useCalendarStore();
 	const { isCalendarModalOpen, closeCalendarModal } = useUiStore();
 
 	const [checked, setChecked] = useState(false);
@@ -77,7 +78,12 @@ export const CalendarModal = () => {
 	};
 
 	const handleDelete = () => {
+    // Borramos nota
 		startDeletingEvent();
+    // Cerramos modal
+		closeCalendarModal();
+		// Limpiamos errores
+		setFormSubmitted(false);
 	};
 
 	const onSubmit = (event) => {
@@ -110,7 +116,7 @@ export const CalendarModal = () => {
 			overlayClassName="modal-fondo"
 			closeTimeoutMS={200}
 		>
-			<h1> Nuevo evento </h1>
+			{formValues?.id ? <h1>Editar Evento</h1> : <h1>Nuevo evento</h1>}
 			<hr />
 			<form className="container" onSubmit={onSubmit}>
 				<div className="form-group mb-2">
@@ -163,6 +169,7 @@ export const CalendarModal = () => {
 						placeholder="Notas"
 						rows="5"
 						name="notes"
+						maxLength={100}
 						value={formValues.notes}
 						onChange={onInputChange}
 					></textarea>

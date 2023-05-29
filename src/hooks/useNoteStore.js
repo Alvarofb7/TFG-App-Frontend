@@ -1,85 +1,127 @@
-import { useDispatch, useSelector } from "react-redux"
-import { onAddNewNote, onClearActiveNote, onDeleteNote, onSetActiveNote, onSetNotes, onUpdateNote } from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	onAddNewNote,
+	onClearActiveNote,
+	onDeleteNote,
+	onSetActiveNote,
+	onSetNotes,
+	onUpdateNote,
+} from "../store";
 import { api } from "../api";
 import { convertNotesToDateNotes } from "../helpers";
 import Swal from "sweetalert2";
 
 export const useNoteStore = () => {
+	const dispatch = useDispatch();
+	const { isLoadingNotes, notes, activeNote } = useSelector(
+		(state) => state.notes
+	);
+	const { user } = useSelector((state) => state.auth);
 
-    const dispatch = useDispatch();
-    const { isLoadingNotes, notes, activeNote } = useSelector(state => state.notes);
-    const { user } = useSelector(state => state.auth);
+	const setActiveNote = (note) => {
+		dispatch(onSetActiveNote(note));
+	};
 
-    const setActiveNote = (note) => {
-        dispatch(onSetActiveNote(note));
-    }
+	const setActiveNewNote = () => {
+		const note = {
+			title: "",
+			description: "",
+			date: new Date(),
+			user: {},
+		};
+		dispatch(onSetActiveNote(note));
+	};
 
-    const startLoadingNote = async () => {
-        try {
-            const { data } = await api.get("/notes");
-            const notes = convertNotesToDateNotes(data.notes);
+	const startLoadingNote = async () => {
+		try {
+			const { data } = await api.get("/notes");
+			const notes = convertNotesToDateNotes(data.notes);
 
-            dispatch(onSetNotes(notes));
+			dispatch(onSetNotes(notes));
+		} catch (error) {
+			console.log(error);
+			Swal.fire(
+				"Error al cargar las notas",
+				"No se han podido cargar los elementos",
+				"error"
+			);
+		}
+	};
 
-        } catch (error) {
-            console.log(error);
-            Swal.fire("Error al cargar las notas", "No se han podido cargar los elementos", "error");
-        }
-    }
+	const startSavingNote = async (note) => {
+		try {
+			if (note.id) {
+				// Actualizamos la fecha con la última modificación
+				const updatedNote = {
+					...note,
+					date: new Date(),
+				};
 
-    const startSavingNote = async (note) => {
-        try {
-            if (note.id) {
-                // Actualizamos la fecha con la última modificación
-                const updatedNote = {
-                    ...note,
-                    date: new Date()
-                }
-                
-                // Actualizando
-                await api.put(`/notes/${note.id}`, updatedNote);
+				// Actualizando
+				await api.put(`/notes/${note.id}`, updatedNote);
 
-                dispatch(onUpdateNote({ ...updatedNote }));
-            } else {
-                // Creando
-                const { data } = await api.post("/notes", note);
+				dispatch(onUpdateNote({ ...updatedNote }));
+			} else {
+				// Creando
+				const { data } = await api.post("/notes", note);
 
-                dispatch(onAddNewNote({ ...note, id: data.note.id, user }));
-            }
-        } catch (error) {
-            console.log(error);
-            Swal.fire("Error al guardar", error.response?.data?.msg || "No se ha podido crear/actualizar la nota", "error");
-        }
-    }
+				dispatch(onAddNewNote({ ...note, id: data.note.id, user }));
+			}
 
-    const startDeletingNote = async () => {
-        try {
-            await api.delete(`/notes/${activeNote.id}`);
+			setActiveNote({
+				title: "",
+				description: "",
+				date: new Date(),
+				user: {},
+			});
+		} catch (error) {
+			console.log(error);
+			Swal.fire(
+				"Error al guardar",
+				error.response?.data?.msg || "No se ha podido crear/actualizar la nota",
+				"error"
+			);
+		}
+	};
 
-            dispatch(onDeleteNote());
-        } catch (error) {
-            console.log(error);
-            Swal.fire("Error al eliminar", error.response.data?.msg || "No se ha podido eliminar la nota", "error");
-        }
-    }
+	const startDeletingNote = async () => {
+		try {
+			await api.delete(`/notes/${activeNote.id}`);
 
-    const clearActiveNote = () => {
-        dispatch(onClearActiveNote())
-    }
+			dispatch(onDeleteNote());
 
-    return {
-        //* Properties
-        activeNote,
-        isLoadingNotes,
-        notes,
+			setActiveNote({
+				title: "",
+				description: "",
+				date: new Date(),
+				user: {},
+			});
+		} catch (error) {
+			console.log(error);
+			Swal.fire(
+				"Error al eliminar",
+				error.response.data?.msg || "No se ha podido eliminar la nota",
+				"error"
+			);
+		}
+	};
 
-        //* Methods
-        clearActiveNote,
-        setActiveNote,
-        startDeletingNote,
-        startLoadingNote,
-        startSavingNote,
+	const clearActiveNote = () => {
+		dispatch(onClearActiveNote());
+	};
 
-    }
+	return {
+		//* Properties
+		activeNote,
+		isLoadingNotes,
+		notes,
 
-}
+		//* Methods
+		clearActiveNote,
+		setActiveNewNote,
+		setActiveNote,
+		startDeletingNote,
+		startLoadingNote,
+		startSavingNote,
+	};
+};

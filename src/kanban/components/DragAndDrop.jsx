@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 
@@ -27,7 +27,7 @@ export const DragAndDrop = () => {
 	};
 
 	return (
-		<div className="grid">
+		<div className="kanban-columns">
 			<DragDropContext onDragEnd={handleOnDragEnd}>
 				{Object.keys(status).map((containerKey) => (
 					<ContainerCards

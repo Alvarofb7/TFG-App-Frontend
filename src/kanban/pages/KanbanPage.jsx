@@ -3,7 +3,7 @@ import { TaskModal } from "../components/TaskModal";
 
 export const KanbanPage = () => {
 	return (
-		<div className="container-main">
+		<div className="kanban-container">
 			<DragAndDrop />
 			<TaskModal />
 		</div>

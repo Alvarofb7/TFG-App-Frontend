@@ -112,7 +112,7 @@ export const TaskModal = () => {
 			overlayClassName="modal-fondo"
 			closeTimeoutMS={200}
 		>
-			<h1>Nueva tarea</h1>
+			{formValues?.id ? <h1>Editar Tarea</h1> : <h1>Nueva tarea</h1>}
 
 			<hr />
 			<form className="container" onSubmit={onSubmit}>

@@ -1,5 +1,5 @@
 export const status = {
-    toDo: "To Do",
-    inPogress: "In Progress",
-    done: "Done"
+    toDo: "Pendiente",
+    inPogress: "En progreso",
+    done: "Terminado"
 }
