@@ -1,6 +1,11 @@
-# Proyecto TFG: 3 en 1 (Calendario, Notas y Tareas)
+# Proyecto TFG: Calendario, Notas y Tareas
 
-## Usando React con JavaScript, Node, Express y Mongo
+## Aplicación desarrollada con el stack tecnológico MERN
+Aplicación desarrollada para el trabajo de fin de grado cuya intención es la de ser capaz de aprender React desde cero y realizar esta aplicación como muestra de mi aprendizaje.
+
+Cuenta con un sistema de autenticación robusto y las funcionalidades de calendario, notas y kanban.
+
+Este repositorio contiene el código de la parte frontend de la aplicación.
 
 ## Crear proyecto:
 
