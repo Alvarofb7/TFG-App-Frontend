@@ -1,62 +1,79 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const useForm = (initialForm = {}, formValidations = {}) => {
+export const useForm = (initialForm = {}) => {
+	const [formState, setFormState] = useState(initialForm);
 
-    const [formState, setFormState] = useState(initialForm);
-    const [formValidation, setFormValidation] = useState({});
+	useEffect(() => {
+		setFormState(initialForm);
+	}, [initialForm]);
 
-    useEffect(() => {
-        createValidators();
-    }, [formState])
+	const onInputChange = ({ target }) => {
+		const { name, value } = target;
+		setFormState({
+			...formState,
+			[name]: value,
+		});
+	};
 
-    useEffect(() => {
-        setFormState(initialForm);
-    }, [initialForm])
+	const onResetForm = () => {
+		setFormState(initialForm);
+	};
 
+	const [lowerValidated, setLowerValidated] = useState(false);
+	const [upperValidated, setUpperValidated] = useState(false);
+	const [lengthValidated, setLengthValidated] = useState(false);
+	const [numberValidated, setNumberValidated] = useState(false);
+	const [specialCharValidated, setSpecialCharValidated] = useState(false);
 
-    const isFormValid = useMemo(() => {
+	const onPasswordValidation = ({ target }) => {
+		const { name, value } = target;
+		setFormState({
+			...formState,
+			[name]: value,
+		});
 
-        for (const formValue of Object.keys(formValidation)) {
-            if (formValidation[formValue] !== null) return false;
-        }
+		const lower = /[a-z]/;
+		const upper = /[A-Z]/;
+		const length = new RegExp("(?=.{6,20})");
+		const number = /\d/;
+		const special = /[$!%*?-_&]/;
 
-        return true;
-    }, [formValidation])
+		setLowerValidated(false);
+		setUpperValidated(false);
+		setLengthValidated(false);
+		setNumberValidated(false);
+		setSpecialCharValidated(false);
 
+		if (lower.test(value)) {
+			setLowerValidated(true);
+		}
+		if (upper.test(value)) {
+			setUpperValidated(true);
+		}
+		if (length.test(value)) {
+			setLengthValidated(true);
+		}
+		if (number.test(value)) {
+			setNumberValidated(true);
+		}
+		if (special.test(value)) {
+			setSpecialCharValidated(true);
+		}
+	};
 
-    const onInputChange = ({ target }) => {
-        const { name, value } = target;
-        setFormState({
-            ...formState,
-            [name]: value
-        });
-    }
+	return {
+		//* Variables
+		...formState,
+		formState,
+		lowerValidated,
+		upperValidated,
+		lengthValidated,
+		numberValidated,
+		specialCharValidated,
 
-    const onResetForm = () => {
-        setFormState(initialForm);
-    }
-
-    const createValidators = () => {
-
-        const formCheckedValues = {};
-
-        for (const formField of Object.keys(formValidations)) {
-            const [fn, errorMessage] = formValidations[formField];
-
-            formCheckedValues[`${formField}Valid`] = fn(formState[formField]) ? null : errorMessage;
-        }
-
-        setFormValidation(formCheckedValues);
-    }
-
-
-    return {
-        ...formState,
-        formState,
-        onInputChange,
-        onResetForm,
-
-        ...formValidation,
-        isFormValid
-    }
-}
+		//* Methos
+		onInputChange,
+		onResetForm,
+		onPasswordValidation,
+	};
+};

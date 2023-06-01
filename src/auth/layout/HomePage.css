@@ -119,6 +119,7 @@ li > a {
 .fixed-nav .links a:hover {
 	color: var(--clr-secondary);
 }
+
 @media screen and (max-width: 800px) {
 	.nav-header {
 		display: flex;
@@ -314,7 +315,7 @@ header {
 
 footer {
 	background: var(--clr-grey-1);
-	padding: 5rem 1rem;
+	padding: 2rem 1rem;
 }
 
 footer p {
