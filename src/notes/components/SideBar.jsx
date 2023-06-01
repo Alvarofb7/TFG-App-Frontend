@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { SideBarNote } from "./SideBarNote";
 import { useNoteStore } from "../../hooks";
+import { RenderNotes } from "./RenderNotes";
 
 export const SideBar = ({ show }) => {
 	const { notes, isLoadingNotes } = useSelector((state) => state.notes);
@@ -29,15 +30,7 @@ export const SideBar = ({ show }) => {
 			</div>
 			<ul className="list-notes list-group">
 				{!isLoadingNotes ? (
-					notes.length !== 0 ? (
-						notes.map((note) => <SideBarNote key={note.id} {...note} />)
-					) : (
-						<li className="list-group-item mb-1 text-center">
-							<div className="card-body">
-								<p className="card-text">Cree una nota para empezar</p>
-							</div>
-						</li>
-					)
+					<RenderNotes notes={notes} />
 				) : (
 					<li className="list-group-item">Cargando notas...</li>
 				)}
