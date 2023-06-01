@@ -9,22 +9,6 @@ export const Navbar = () => {
 
 	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
-	const linksContainerRef = useRef(null);
-	const linksRef = useRef(null);
-
-	const toggle = () => {
-		const linksContainer = linksContainerRef.current;
-		const links = linksRef.current;
-
-		const linksHeight = links?.getBoundingClientRect().height;
-		const containerHeight = linksContainer?.getBoundingClientRect().height;
-		if (containerHeight === 0) {
-			linksContainer.style.height = `${linksHeight}px`;
-		} else {
-			linksContainer.style.height = 0;
-		}
-	};
-
 	return (
 		<div
 			className="navbar navbar-expand-sm navbar-dark bg-dark px-4"

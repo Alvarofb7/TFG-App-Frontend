@@ -34,7 +34,7 @@ export const useForm = (initialForm = {}) => {
 
 		const lower = /[a-z]/;
 		const upper = /[A-Z]/;
-		const length = new RegExp("(?=.{6,20})");
+		const length = /(?=^.{6,20}$)/;
 		const number = /\d/;
 		const special = /[$!%*?-_&]/;
 

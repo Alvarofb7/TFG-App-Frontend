@@ -52,12 +52,6 @@
 	gap: 0.5rem;
 }
 
-.password-input-login {
-	display: flex;
-	flex-direction: row;
-	gap: 0.5rem;
-}
-
 .password-input-register {
 	display: flex;
 	flex-direction: column;
