@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Swal from "sweetalert2";
+
 import { useAuthStore, useForm } from "../../hooks";
+import { HomePage } from "../layout/HomePage";
 
 import "./LoginPage.css";
-import { HomePage } from "../layout/HomePage";
+import { PasswordValidatorBox } from "../components/PasswordValidatorBox";
 
 const loginFormFields = {
 	loginEmail: "",
@@ -22,12 +25,19 @@ export const LoginPage = () => {
 		loginPassword,
 		onInputChange: onLoginInputChange,
 	} = useForm(loginFormFields);
+
 	const {
 		registerName,
 		registerEmail,
 		registerPassword,
 		registerPassword2,
 		onInputChange: onRegisterInputChange,
+		onPasswordValidation: onRegisterPasswordValidation,
+		lowerValidated: registerLowerValidated,
+		upperValidated: registerUpperValidated,
+		lengthValidated: registerLengthValidated,
+		numberValidated: registerNumberValidated,
+		specialCharValidated: registerSpecialCharValidated,
 	} = useForm(registerFormFields);
 
 	const { startLogin, startRegister } = useAuthStore();
@@ -54,6 +64,12 @@ export const LoginPage = () => {
 		});
 	};
 
+	const [shownLogin, setShownLogin] = useState(false);
+	const switchShownLogin = () => setShownLogin(!shownLogin);
+
+	const [shownRegister, setShownRegister] = useState(false);
+	const switchShownRegister = () => setShownRegister(!shownRegister);
+
 	return (
 		<HomePage>
 			<div className="container login-container">
@@ -69,17 +85,30 @@ export const LoginPage = () => {
 									name="loginEmail"
 									value={loginEmail}
 									onChange={onLoginInputChange}
+									required
 								/>
 							</div>
-							<div className="form-group mb-2">
+							<div className="form-group mb-2 password-input-login">
 								<input
-									type="password"
+									type={shownLogin ? "text" : "password"}
 									className="form-control"
 									placeholder="Contraseña"
 									name="loginPassword"
 									value={loginPassword}
 									onChange={onLoginInputChange}
+									required
 								/>
+								<button
+									type="button"
+									className="btn btn-outline-primary btn-password-login"
+									onClick={switchShownLogin}
+								>
+									{shownLogin ? (
+										<i className="fa-regular fa-eye-slash"></i>
+									) : (
+										<i className="fa-regular fa-eye"></i>
+									)}
+								</button>
 							</div>
 							<div className="d-grid gap-2">
 								<input type="submit" className="btnSubmit" value="Login" />
@@ -98,6 +127,7 @@ export const LoginPage = () => {
 									name="registerName"
 									value={registerName}
 									onChange={onRegisterInputChange}
+									required
 								/>
 							</div>
 							<div className="form-group mb-2">
@@ -108,19 +138,42 @@ export const LoginPage = () => {
 									name="registerEmail"
 									value={registerEmail}
 									onChange={onRegisterInputChange}
+									required
 								/>
 							</div>
-							<div className="form-group mb-2">
-								<input
-									type="password"
-									className="form-control"
-									placeholder="Contraseña"
-									name="registerPassword"
-									value={registerPassword}
-									onChange={onRegisterInputChange}
-								/>
-							</div>
+							<div className="form-group mb-2 password-input-register">
+								<div className="password-register">
+									<input
+										type={shownRegister ? "text" : "password"}
+										className="form-control"
+										placeholder="Contraseña"
+										name="registerPassword"
+										value={registerPassword}
+										onChange={onRegisterPasswordValidation}
+										required
+									/>
 
+									<button
+										type="button"
+										className="btn btn-outline-light btn-password-register"
+										onClick={switchShownRegister}
+									>
+										{shownRegister ? (
+											<i className="fa-regular fa-eye-slash"></i>
+										) : (
+											<i className="fa-regular fa-eye"></i>
+										)}
+									</button>
+								</div>
+								<PasswordValidatorBox
+									lowerValid={registerLowerValidated}
+									upperValid={registerUpperValidated}
+									lengthValid={registerLengthValidated}
+									numberValid={registerNumberValidated}
+									specialCharValid={registerSpecialCharValidated}
+									password={registerPassword}
+								/>
+							</div>
 							<div className="form-group mb-2">
 								<input
 									type="password"
@@ -129,6 +182,7 @@ export const LoginPage = () => {
 									name="registerPassword2"
 									value={registerPassword2}
 									onChange={onRegisterInputChange}
+									required
 								/>
 							</div>
 

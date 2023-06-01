@@ -122,6 +122,7 @@ export const TaskModal = () => {
 						onChange={onSelectChanged}
 						className="form-select form-select-sm"
 						value={formValues.status}
+            required
 					>
 						{Object.keys(status).map((keyStatus) => (
 							<option key={keyStatus} value={status[keyStatus]}>
@@ -141,6 +142,7 @@ export const TaskModal = () => {
 						locale="es"
 						timeCaption="Hora"
 						onChange={(event) => onDateChanged(event, "finish")}
+						required
 					/>
 				</div>
 				<hr />
@@ -154,6 +156,7 @@ export const TaskModal = () => {
 						autoComplete="false"
 						value={formValues.title}
 						onChange={onInputChange}
+						required
 					/>
 				</div>
 				<div className="form-group mb-2">
@@ -163,7 +166,7 @@ export const TaskModal = () => {
 						className="form-control"
 						placeholder="Descripción de la tarea"
 						rows={4}
-						maxLength={500}
+						maxLength={200}
 						name="description"
 						autoComplete="false"
 						value={formValues.description}

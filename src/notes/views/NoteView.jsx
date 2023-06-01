@@ -45,6 +45,7 @@ export const NoteView = () => {
 							name="title"
 							value={title}
 							onChange={onInputChange}
+              required
 						/>
 					</div>
 					<div className="form-group mb-3">

@@ -24,6 +24,7 @@
 	--clr-white: #fff;
 	--clr-red-dark: hsl(360, 67%, 44%);
 	--clr-red-light: hsl(360, 71%, 66%);
+	--clr-red-light-2: hsl(0, 63%, 75%);
 	--clr-green-dark: hsl(125, 67%, 44%);
 	--clr-green-light: hsl(125, 71%, 66%);
 	--clr-secondary: hsla(182, 63%, 54%);
@@ -270,6 +271,7 @@
 	align-items: center;
 	flex-grow: 1;
 	height: 80vh;
+  width: 33.33%;
 	overflow-y: auto;
 	border: 2px solid var(--clr-grey-8);
 	background-color: var(--clr-black-2);

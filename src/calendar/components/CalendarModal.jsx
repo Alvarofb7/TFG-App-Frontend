@@ -78,9 +78,9 @@ export const CalendarModal = () => {
 	};
 
 	const handleDelete = () => {
-    // Borramos nota
+		// Borramos nota
 		startDeletingEvent();
-    // Cerramos modal
+		// Cerramos modal
 		closeCalendarModal();
 		// Limpiamos errores
 		setFormSubmitted(false);
@@ -130,6 +130,7 @@ export const CalendarModal = () => {
 						disabled={checked}
 						locale="es"
 						timeCaption="Hora"
+						required
 					/>
 				</div>
 
@@ -145,6 +146,7 @@ export const CalendarModal = () => {
 						disabled={checked}
 						locale="es"
 						timeCaption="Hora"
+						required
 					/>
 				</div>
 
@@ -159,6 +161,7 @@ export const CalendarModal = () => {
 						autoComplete="off"
 						value={formValues.title}
 						onChange={onInputChange}
+						required
 					/>
 				</div>
 
