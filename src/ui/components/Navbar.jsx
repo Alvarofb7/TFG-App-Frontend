@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useAuthStore } from "../../hooks";
 
 export const Navbar = () => {

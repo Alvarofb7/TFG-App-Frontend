@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { SideBarNote } from "./SideBarNote";
 import { useNoteStore } from "../../hooks";
 import { RenderNotes } from "./RenderNotes";
 
