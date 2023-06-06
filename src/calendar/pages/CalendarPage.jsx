@@ -8,7 +8,7 @@ import { useCalendarStore, useUiStore } from "../../hooks";
 
 export const CalendarPage = () => {
 	const { openCalendarModal } = useUiStore();
-	const { events, setActiveEvent, startLoadingEvents, quitActiveEvent } =
+	const { events, setActiveEvent, startLoadingEvents } =
 		useCalendarStore();
 	const [lastView, setLastView] = useState(
 		localStorage.getItem("lastView") || "week"

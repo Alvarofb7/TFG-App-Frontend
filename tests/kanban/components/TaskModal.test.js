@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useKanbanStore, useUiStore } from "../../../src/hooks";
 import { TaskModal } from "../../../src/kanban/components/TaskModal";
-import { taskWithId } from "../../fixtures/kanbanStates";
 
 jest.mock("../../../src/hooks/useUiStore");
 jest.mock("../../../src/hooks/useKanbanStore");
