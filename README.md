@@ -1,6 +1,7 @@
 # Proyecto TFG: Calendario, Notas y Tareas
 
 ## Aplicación desarrollada con el stack tecnológico MERN
+
 Aplicación desarrollada para el trabajo de fin de grado cuya intención es la de ser capaz de aprender React desde cero y realizar esta aplicación como muestra de mi aprendizaje.
 
 Cuenta con un sistema de autenticación robusto y las funcionalidades de calendario, notas y kanban.
@@ -51,3 +52,15 @@ yarn add axios
 ### React-beautiful-dnd
 
 yarn add react-beautiful-dnd
+
+### babel-jest
+
+yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react
+
+### testing-library
+
+yarn add --dev @testing-library/react @types/jest jest-environment-jsdom
+
+### testing-library/jest-dom
+
+yarn add --dev @testing-library/jest-dom

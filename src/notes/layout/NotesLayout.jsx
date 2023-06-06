@@ -43,6 +43,7 @@ export const NotesLayout = ({ children }) => {
 					className="btn btn-outline-secondary btn-collapse-sidebar-note"
 					role="button"
 					onClick={collapseList}
+          aria-label="btn-collapse-sidebar"
 				>
 					<i
 						className={`fa ${iconButton}`}

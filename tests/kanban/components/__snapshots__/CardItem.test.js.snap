@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente CardItem Debe de mostrar el componente correctamente 1`] = `
+<div>
+  <div
+    class="card-container"
+  >
+    <div
+      class="card-title false"
+    >
+      <h5>
+        Prueba
+      </h5>
+      <button
+        aria-label="btn-delete-task"
+        class="btn btn-danger"
+        type="button"
+      >
+        <i
+          class="fa-solid fa-xmark"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

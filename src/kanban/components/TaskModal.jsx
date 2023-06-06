@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 
 import { status } from "../interfaces/Status";
 import { useUiStore, useKanbanStore } from "../../hooks";
+import { getEnvVariables } from "../../helpers";
 
 registerLocale("es", es);
 
@@ -25,7 +26,9 @@ const customStyles = {
 	},
 };
 
-Modal.setAppElement("#root");
+if (getEnvVariables().VITE_MODE !== "test") {
+	Modal.setAppElement("#root");
+}
 
 export const TaskModal = () => {
 	const { isKanbanModalOpen, closeKanbanModal } = useUiStore();
@@ -112,17 +115,17 @@ export const TaskModal = () => {
 			overlayClassName="modal-fondo"
 			closeTimeoutMS={200}
 		>
-			{formValues?.id ? <h1>Editar Tarea</h1> : <h1>Nueva tarea</h1>}
+			{formValues?.id ? <h1>Editar Tarea</h1> : <h1>Nueva Tarea</h1>}
 
 			<hr />
-			<form className="container" onSubmit={onSubmit}>
+			<form className="container" aria-label="form-task" onSubmit={onSubmit}>
 				<div className="form-group mb-2">
 					<label>Estado</label>
 					<select
 						onChange={onSelectChanged}
 						className="form-select form-select-sm"
 						value={formValues.status}
-            required
+						required
 					>
 						{Object.keys(status).map((keyStatus) => (
 							<option key={keyStatus} value={status[keyStatus]}>
@@ -156,6 +159,7 @@ export const TaskModal = () => {
 						autoComplete="false"
 						value={formValues.title}
 						onChange={onInputChange}
+            aria-label="title"
 						required
 					/>
 				</div>

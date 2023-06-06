@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente SideBarNote Debe de mostrarse el componente correctamente 1`] = `
+<div>
+  <li
+    aria-label="note-1"
+    class="list-group-item mb-1 text-center"
+    id="1"
+  >
+    <div
+      class="card-body"
+    >
+      <p
+        class="card-text"
+      >
+        <b>
+          Nota
+        </b>
+         - 
+        1 nov 2023
+      </p>
+    </div>
+  </li>
+</div>
+`;

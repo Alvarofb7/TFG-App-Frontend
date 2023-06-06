@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 import { useCalendarStore, useUiStore } from "../../hooks";
+import { getEnvVariables } from "../../helpers";
 
 registerLocale("es", es);
 
@@ -24,7 +25,9 @@ const customStyles = {
 	},
 };
 
-Modal.setAppElement("#root");
+if (getEnvVariables().VITE_MODE !== "test") {
+	Modal.setAppElement("#root");
+}
 
 export const CalendarModal = () => {
 	const { quitActiveEvent, activeEvent, startSavingEvent, startDeletingEvent } =
@@ -116,9 +119,9 @@ export const CalendarModal = () => {
 			overlayClassName="modal-fondo"
 			closeTimeoutMS={200}
 		>
-			{formValues?.id ? <h1>Editar Evento</h1> : <h1>Nuevo evento</h1>}
+			{formValues?.id ? <h1>Editar Evento</h1> : <h1>Nuevo Evento</h1>}
 			<hr />
-			<form className="container" onSubmit={onSubmit}>
+			<form className="container" aria-label="form-event" onSubmit={onSubmit}>
 				<div className="form-group mb-2">
 					<label>Fecha y hora inicio</label>
 					<DatePicker
@@ -162,6 +165,7 @@ export const CalendarModal = () => {
 						value={formValues.title}
 						onChange={onInputChange}
 						required
+            aria-label="title"
 					/>
 				</div>
 
@@ -200,6 +204,7 @@ export const CalendarModal = () => {
 							type="button"
 							className="btn btn-outline-danger btn-block btn-submit-modal"
 							onClick={handleDelete}
+              aria-label="btn-delete-event"
 						>
 							<i className="fa fa-trash"></i>
 							<span> Eliminar</span>

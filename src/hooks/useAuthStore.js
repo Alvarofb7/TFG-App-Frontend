@@ -7,6 +7,7 @@ import {
 	onLogoutCalendar,
 	onLogoutKanban,
 	onLogoutNotes,
+	onLogoutUi,
 } from "../store";
 import { api } from "../api";
 import Swal from "sweetalert2";
@@ -87,6 +88,7 @@ export const useAuthStore = () => {
 
 	const startLogout = () => {
 		localStorage.clear();
+		dispatch(onLogoutUi());
 		dispatch(onLogoutCalendar());
 		dispatch(onLogoutNotes());
 		dispatch(onLogoutKanban());

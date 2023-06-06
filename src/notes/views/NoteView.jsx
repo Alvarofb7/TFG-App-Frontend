@@ -35,7 +35,7 @@ export const NoteView = () => {
 				<h3>{dateString}</h3>
 			</div>
 			<div className="row">
-				<form className="container" onSubmit={onSubmit}>
+				<form className="container" aria-label="form-note" onSubmit={onSubmit}>
 					<div className="form-group mb-3">
 						<input
 							type="text"
@@ -46,6 +46,7 @@ export const NoteView = () => {
 							value={title}
 							onChange={onInputChange}
               required
+              aria-label="input-title-note"
 						/>
 					</div>
 					<div className="form-group mb-3">

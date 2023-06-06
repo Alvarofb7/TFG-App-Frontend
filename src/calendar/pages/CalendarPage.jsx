@@ -43,10 +43,6 @@ export const CalendarPage = () => {
 		openCalendarModal();
 	};
 
-	const onSelectEmptySlot = () => {
-		quitActiveEvent();
-	};
-
 	const onViewChanged = (event) => {
 		localStorage.setItem("lastView", event);
 		setLastView(event);
@@ -63,14 +59,17 @@ export const CalendarPage = () => {
 				defaultView={lastView}
 				startAccessor="start"
 				endAccessor="end"
-				style={{ height: "calc(100vh - 70px)", marginTop: "10px", fontFamily: "Montserrat" }}
+				style={{
+					height: "calc(100vh - 70px)",
+					marginTop: "10px",
+					fontFamily: "Montserrat",
+				}}
 				messages={getMessagesES()}
 				eventPropGetter={eventStyleGetter}
 				components={{
 					event: CalendarEvent,
 				}}
 				onSelectEvent={onSelect}
-				onSelectSlot={onSelectEmptySlot}
 				onView={onViewChanged}
 				popup
 			/>
