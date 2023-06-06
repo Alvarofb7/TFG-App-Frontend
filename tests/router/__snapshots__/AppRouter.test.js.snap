@@ -1,0 +1,477 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas de AppRouter Debe de mostrar el calendario en caso de estar autenticados 1`] = `
+<div>
+  <h1>
+    CalendarPage
+  </h1>
+</div>
+`;
+
+exports[`Pruebas de AppRouter Debe de mostrar la página de home en caso de no estar autenticados 1`] = `
+<div>
+  <div
+    class="homePage"
+    id="home"
+  >
+    <header>
+      <nav
+        class="nav"
+        id="nav"
+      >
+        <div
+          class="nav-center"
+        >
+          <div
+            class="nav-header"
+          >
+            <img
+              alt="Logo app"
+              class="logo"
+              src="/img/Logo.png"
+            />
+            <button
+              class="nav-toggle"
+            >
+              <i
+                class="fas fa-bars"
+              />
+            </button>
+          </div>
+          <div
+            class="links-container"
+          >
+            <ul
+              class="links"
+            >
+              <li>
+                <a
+                  class="scroll-link"
+                  href="#home"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  class="scroll-link"
+                  href="#features"
+                >
+                  Funcionalidades
+                </a>
+              </li>
+              <li>
+                <a
+                  class="scroll-link"
+                  href="#about"
+                >
+                  ¿Quién soy?
+                </a>
+              </li>
+              <li>
+                <a
+                  class="scroll-link"
+                  href="#authentication"
+                >
+                  Autenticación
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div
+        class="banner"
+      >
+        <div
+          class="container-banner"
+        >
+          <h1>
+            TFG App
+          </h1>
+          <h4>
+            La mejor aplicación para organizar tu tiempo y aumentar tu productividad.
+          </h4>
+        </div>
+      </div>
+    </header>
+    <section
+      class="section"
+      id="features"
+    >
+      <div
+        class="home-title"
+      >
+        <h2>
+          ¿Qué ofrecemos?
+        </h2>
+      </div>
+      <div
+        class="features-slider"
+      >
+        <div
+          class="slider-container"
+        >
+          <div
+            class="slide"
+          >
+            <img
+              alt="Imagen calendario"
+              class="slide-img"
+              src="/img/Calendario.jpg"
+            />
+          </div>
+          <div
+            class="slide"
+          >
+            <img
+              alt="Imagen notas"
+              class="slide-img"
+              src="/img/Nota.jpg"
+            />
+          </div>
+          <div
+            class="slide"
+          >
+            <img
+              alt="Imagen kanban"
+              class="slide-img"
+              src="/img/Kanban.jpg"
+            />
+          </div>
+        </div>
+        <div
+          class="btn-container"
+        >
+          <button
+            class="prevBtn"
+            type="button"
+          >
+            <i
+              class="fa-solid fa-arrow-left"
+            />
+          </button>
+          <button
+            class="nextBtn"
+            type="button"
+          >
+            <i
+              class="fa-solid fa-arrow-right"
+            />
+          </button>
+        </div>
+      </div>
+    </section>
+    <section
+      class="section"
+      id="about"
+    >
+      <div
+        class="home-title"
+      >
+        <h2>
+          ¿Quién soy?
+        </h2>
+      </div>
+      <div
+        class="about-center section-center"
+      >
+        <article
+          class="about-img"
+        >
+          <img
+            alt="Imagen perfil"
+            src="/img/ImagenPerfil.jpg"
+          />
+        </article>
+        <article
+          class="about"
+        >
+          <div
+            class="btn-container-about"
+          >
+            <button
+              class="tab-btn active"
+              data-id="personal"
+            >
+              Personal
+            </button>
+            <button
+              class="tab-btn"
+              data-id="tfg"
+            >
+              Trabajo de fin de grado
+            </button>
+          </div>
+          <div
+            class="about-content"
+          >
+            <div
+              class="content active"
+              id="personal"
+            >
+              <p>
+                Estudiante del último curso de Ingeniería del Software en Sevilla a falta de la realización del trabajo de fin de grado para completarlo.
+                <br />
+                <br />
+                Trabajando desde el 1 de diciembre de 2020 como desarrollador Backend. Realizando tareas de mantenimiento, de desarrollo y análisis tanto funcional como técnico.
+                <br />
+                <br />
+                Competitivo y con muchas ganas de seguir aprendiendo para ser mejor.
+              </p>
+            </div>
+            <div
+              class="content"
+              id="tfg"
+            >
+              <p>
+                Realizando este trabajo de fin de grado cuyo tema a tratar es el aprendizaje desde cero de la librería React. Para ello se ha necesitado un aprendizaje previo de JavaScript, dado que mi conocimiento era nulo, y luego un aprendizaje de React. Además, he utilizado el stack tecnológico MERN, compuesto de MongoDB, Express, React y Node.js.
+                <br />
+                <br />
+                Tras todo este aprendizaje, he desarrollado una aplicación con un sistema de autenticación robusto y 3 funcionalidades: calendario, notas y Kanban.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section
+      class="section"
+      id="authentication"
+    >
+      <div
+        class="home-title"
+      >
+        <h2>
+          Autenticacion
+        </h2>
+      </div>
+      <div
+        class="authenticacion-form"
+      >
+        <div
+          class="container login-container"
+        >
+          <div
+            class="row login-row"
+          >
+            <div
+              class="col-md-6 login-form-1"
+            >
+              <h3>
+                Ingreso
+              </h3>
+              <form>
+                <div
+                  class="form-group mb-2"
+                >
+                  <input
+                    class="form-control"
+                    name="loginEmail"
+                    placeholder="Correo"
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group mb-2 password-input-login"
+                >
+                  <input
+                    class="form-control"
+                    name="loginPassword"
+                    placeholder="Contraseña"
+                    required=""
+                    type="password"
+                    value=""
+                  />
+                  <button
+                    class="btn btn-outline-primary btn-password-login"
+                    type="button"
+                  >
+                    <i
+                      class="fa-regular fa-eye"
+                    />
+                  </button>
+                </div>
+                <div
+                  class="d-grid gap-2"
+                >
+                  <button
+                    aria-label="btn-login"
+                    class="btn btn-light btnSubmit"
+                    type="submit"
+                  >
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div
+              class="col-md-6 login-form-2"
+            >
+              <h3>
+                Registro
+              </h3>
+              <form>
+                <div
+                  class="form-group mb-2"
+                >
+                  <input
+                    class="form-control"
+                    name="registerName"
+                    placeholder="Nombre"
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group mb-2"
+                >
+                  <input
+                    class="form-control"
+                    name="registerEmail"
+                    placeholder="Correo"
+                    required=""
+                    type="email"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group mb-2 password-input-register"
+                >
+                  <div
+                    class="password-register"
+                  >
+                    <input
+                      class="form-control"
+                      name="registerPassword"
+                      placeholder="Contraseña"
+                      required=""
+                      type="password"
+                      value=""
+                    />
+                    <button
+                      class="btn btn-outline-light btn-password-register"
+                      type="button"
+                    >
+                      <i
+                        class="fa-regular fa-eye"
+                      />
+                    </button>
+                  </div>
+                  <main
+                    aria-label="password-validation-box"
+                    class="password-validation-box"
+                    style="display: none;"
+                  >
+                    <div
+                      class="not-validated"
+                    >
+                      <span
+                        class="list-icon"
+                      >
+                        <i
+                          class="fa-solid fa-xmark"
+                        />
+                      </span>
+                      Debe de contener entre 6 y 20 caracteres
+                    </div>
+                    <div
+                      class="not-validated"
+                    >
+                      <span
+                        class="list-icon"
+                      >
+                        <i
+                          class="fa-solid fa-xmark"
+                        />
+                      </span>
+                      Al menos una letra minúscula
+                    </div>
+                    <div
+                      class="not-validated"
+                    >
+                      <span
+                        class="list-icon"
+                      >
+                        <i
+                          class="fa-solid fa-xmark"
+                        />
+                      </span>
+                      Al menos una letra mayúscula
+                    </div>
+                    <div
+                      class="not-validated"
+                    >
+                      <span
+                        class="list-icon"
+                      >
+                        <i
+                          class="fa-solid fa-xmark"
+                        />
+                      </span>
+                      Al menos un número
+                    </div>
+                    <div
+                      class="not-validated"
+                    >
+                      <span
+                        class="list-icon"
+                      >
+                        <i
+                          class="fa-solid fa-xmark"
+                        />
+                      </span>
+                      Al menos un caracter especial
+                    </div>
+                  </main>
+                </div>
+                <div
+                  class="form-group mb-2"
+                >
+                  <input
+                    class="form-control"
+                    name="registerPassword2"
+                    placeholder="Repita la contraseña"
+                    required=""
+                    type="password"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="d-grid gap-2"
+                >
+                  <button
+                    aria-label="btn-create-account"
+                    class="btn btn-light btnSubmit"
+                    type="submit"
+                  >
+                    Crear cuenta
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      class="footer"
+    >
+      <p>
+        Derechos reservados TFG App © 2023
+      </p>
+    </footer>
+    <a
+      class="scroll-link top-link"
+      href="#home"
+    >
+      <i
+        class="fas fa-arrow-up"
+      />
+    </a>
+  </div>
+</div>
+`;

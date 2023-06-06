@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { SideBarNote } from "./SideBarNote";
 import { useNoteStore } from "../../hooks";
 import { RenderNotes } from "./RenderNotes";
 
@@ -18,12 +17,13 @@ export const SideBar = ({ show }) => {
 	};
 
 	return (
-		<nav className="nav-list-notes" id="list" style={{ display: show }}>
+		<nav className="nav-list-notes" id="list" style={{ display: show }} aria-label="sideBar">
 			<div className="list-note-button">
 				<button
 					className="btn btn-create-note"
 					type="button"
 					onClick={handleClick}
+          aria-label="btn-add-new-note"
 				>
 					Crear nota
 				</button>

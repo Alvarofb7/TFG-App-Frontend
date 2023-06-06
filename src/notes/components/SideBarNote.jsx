@@ -36,6 +36,7 @@ export const SideBarNote = ({
 			key={id}
 			id={id}
 			onClick={setNote}
+      aria-label={`note-${id}`}
 		>
 			<div className="card-body">
 				<p className="card-text">

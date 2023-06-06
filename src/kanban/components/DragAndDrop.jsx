@@ -16,6 +16,7 @@ export const DragAndDrop = () => {
 	}, []);
 
 	const handleOnDragEnd = async (result) => {
+		console.log(result);
 		if (!result.destination) return;
 		const task = tasks.find((task) => task.id === result.draggableId);
 		if (!task) return;

@@ -47,6 +47,7 @@ export const CardItem = ({ data = {}, index }) => {
 						<button
 							type="button"
 							className="btn btn-danger"
+              aria-label="btn-delete-task"
 							onClick={handleDeleteTask}
 						>
 							<i className="fa-solid fa-xmark" />

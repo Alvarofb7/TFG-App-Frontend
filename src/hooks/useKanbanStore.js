@@ -14,9 +14,7 @@ import { convertTaskToDateTask } from "../helpers/convertTaskToDateTask";
 
 export const useKanbanStore = () => {
 	const dispatch = useDispatch();
-	const { activeTask, isLoadingTasks, tasks } = useSelector(
-		(state) => state.kanban
-	);
+	const { activeTask, tasks } = useSelector((state) => state.kanban);
 	const { user } = useSelector((state) => state.auth);
 
 	const startLoadingTasks = async () => {
@@ -55,7 +53,6 @@ export const useKanbanStore = () => {
 			} else {
 				// Creamos
 				const { data } = await api.post("/kanban", task);
-
 				dispatch(onAddNewTask({ ...task, id: data.task.id, user }));
 			}
 		} catch (error) {
@@ -116,9 +113,7 @@ export const useKanbanStore = () => {
 	return {
 		//* Properties
 		activeTask,
-		isLoadingTasks,
 		tasks,
-		hasTasksSelected: !!activeTask?.id,
 
 		//* Methods
 		quitActiveTask,

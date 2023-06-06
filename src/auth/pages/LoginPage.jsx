@@ -111,7 +111,9 @@ export const LoginPage = () => {
 								</button>
 							</div>
 							<div className="d-grid gap-2">
-								<input type="submit" className="btnSubmit" value="Login" />
+								<button className="btn btn-light btnSubmit" aria-label="btn-login" type="submit">
+									Login
+								</button>
 							</div>
 						</form>
 					</div>
@@ -187,11 +189,13 @@ export const LoginPage = () => {
 							</div>
 
 							<div className="d-grid gap-2">
-								<input
+								<button
+									className="btn btn-light btnSubmit"
+									aria-label="btn-create-account"
 									type="submit"
-									className="btnSubmit"
-									value="Crear cuenta"
-								/>
+								>
+									Crear cuenta
+								</button>
 							</div>
 						</form>
 					</div>

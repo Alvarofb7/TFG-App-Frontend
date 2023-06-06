@@ -43,37 +43,40 @@ export const ContainerCards = ({ status: title, items = [] }) => {
 		});
 	};
 
-  const renderButton = () => {
-    if (title === status.toDo) {
-      return (
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleClick}
-        >
-          <i className="fa-solid fa-plus" />
-        </button>
-      );
-    } else if (title === status.done) {
-      return (
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={handleDeleteAll}
-        >
-          <i className="fa-solid fa-xmark" />
-        </button>
-      );
-    } else {
-      return null;
-    }
-  };
+	const renderButton = () => {
+		if (title === status.toDo) {
+			return (
+				<button
+					type="button"
+					className="btn btn-primary"
+					aria-label="btn-add-task"
+					onClick={handleClick}
+				>
+					<i className="fa-solid fa-plus" />
+				</button>
+			);
+		} else if (title === status.done) {
+			return (
+				<button
+					type="button"
+					className="btn btn-danger"
+					onClick={handleDeleteAll}
+					aria-label="btn-delete-all-task-done"
+				>
+					<i className="fa-solid fa-xmark" />
+				</button>
+			);
+		} else {
+			return null;
+		}
+	};
 
 	return (
 		<Droppable droppableId={title}>
 			{(provided) => (
 				<div
 					className="layout-cards"
+					layout-cards="layout-cards"
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 				>

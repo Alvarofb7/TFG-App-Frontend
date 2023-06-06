@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas del componente SideBar Debe de mostrarse el componente correctamente 1`] = `
+<div>
+  <nav
+    aria-label="sideBar"
+    class="nav-list-notes"
+    id="list"
+  >
+    <div
+      class="list-note-button"
+    >
+      <button
+        aria-label="btn-add-new-note"
+        class="btn btn-create-note"
+        type="button"
+      >
+        Crear nota
+      </button>
+    </div>
+    <ul
+      class="list-notes list-group"
+    >
+      <li
+        class="list-group-item"
+      >
+        Cargando notas...
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

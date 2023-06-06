@@ -3,7 +3,7 @@ export const CalendarEvent = ({ event }) => {
 
 	return (
 		<span>
-			<strong>{title}</strong> {notes && <span>- {notes}</span>}{" "}
+			<strong>{title}</strong> {notes && <span>- {notes}</span>}
 		</span>
 	);
 };

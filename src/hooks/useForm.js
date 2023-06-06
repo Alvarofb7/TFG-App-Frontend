@@ -15,10 +15,6 @@ export const useForm = (initialForm = {}) => {
 		});
 	};
 
-	const onResetForm = () => {
-		setFormState(initialForm);
-	};
-
 	const [lowerValidated, setLowerValidated] = useState(false);
 	const [upperValidated, setUpperValidated] = useState(false);
 	const [lengthValidated, setLengthValidated] = useState(false);
@@ -73,7 +69,6 @@ export const useForm = (initialForm = {}) => {
 
 		//* Methos
 		onInputChange,
-		onResetForm,
 		onPasswordValidation,
 	};
 };

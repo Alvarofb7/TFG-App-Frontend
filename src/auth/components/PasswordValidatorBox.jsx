@@ -9,6 +9,7 @@ export const PasswordValidatorBox = ({
 	return (
 		<main
 			className="password-validation-box"
+			aria-label="password-validation-box"
 			style={{
 				display:
 					(lengthValid &&
@@ -24,7 +25,7 @@ export const PasswordValidatorBox = ({
 			<div className={lengthValid ? "validated" : "not-validated"}>
 				{lengthValid ? (
 					<span className="list-icon green">
-						<i class="fa-solid fa-check"></i>
+						<i className="fa-solid fa-check"></i>
 					</span>
 				) : (
 					<span className="list-icon">
@@ -36,7 +37,7 @@ export const PasswordValidatorBox = ({
 			<div className={lowerValid ? "validated" : "not-validated"}>
 				{lowerValid ? (
 					<span className="list-icon green">
-						<i class="fa-solid fa-check"></i>
+						<i className="fa-solid fa-check"></i>
 					</span>
 				) : (
 					<span className="list-icon">
@@ -48,7 +49,7 @@ export const PasswordValidatorBox = ({
 			<div className={upperValid ? "validated" : "not-validated"}>
 				{upperValid ? (
 					<span className="list-icon green">
-						<i class="fa-solid fa-check"></i>
+						<i className="fa-solid fa-check"></i>
 					</span>
 				) : (
 					<span className="list-icon">
@@ -60,7 +61,7 @@ export const PasswordValidatorBox = ({
 			<div className={numberValid ? "validated" : "not-validated"}>
 				{numberValid ? (
 					<span className="list-icon green">
-						<i class="fa-solid fa-check"></i>
+						<i className="fa-solid fa-check"></i>
 					</span>
 				) : (
 					<span className="list-icon">
@@ -72,7 +73,7 @@ export const PasswordValidatorBox = ({
 			<div className={specialCharValid ? "validated" : "not-validated"}>
 				{specialCharValid ? (
 					<span className="list-icon green">
-						<i class="fa-solid fa-check"></i>
+						<i className="fa-solid fa-check"></i>
 					</span>
 				) : (
 					<span className="list-icon">

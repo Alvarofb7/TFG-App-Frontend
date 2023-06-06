@@ -68,12 +68,7 @@ export const useNoteStore = () => {
 				dispatch(onAddNewNote({ ...note, id: data.note.id, user }));
 			}
 
-			setActiveNote({
-				title: "",
-				description: "",
-				date: new Date(),
-				user: {},
-			});
+			setActiveNewNote();
 		} catch (error) {
 			console.log(error);
 			Swal.fire(
@@ -90,12 +85,7 @@ export const useNoteStore = () => {
 
 			dispatch(onDeleteNote());
 
-			setActiveNote({
-				title: "",
-				description: "",
-				date: new Date(),
-				user: {},
-			});
+			setActiveNewNote();
 		} catch (error) {
 			console.log(error);
 			Swal.fire(
