@@ -34,10 +34,10 @@ export const kanbanSlice = createSlice({
 		onDeleteAllTasksDone: (state) => {
 			state.tasks = state.tasks.filter((task) => task.status !== status.done);
 		},
-    onLogoutKanban: (state) => {
-      state.activeTask= null;
-      state.tasks= [];
-    },
+		onLogoutKanban: (state) => {
+			state.activeTask = null;
+			state.tasks = [];
+		},
 	},
 });
 
@@ -47,7 +47,7 @@ export const {
 	onDeleteTask,
 	onQuitActiveTask,
 	onLoadTasks,
-  onLogoutKanban,
+	onLogoutKanban,
 	onSetActiveTask,
 	onUpdateTask,
 } = kanbanSlice.actions;

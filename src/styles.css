@@ -271,7 +271,7 @@
 	align-items: center;
 	flex-grow: 1;
 	height: 80vh;
-  width: 33.33%;
+	width: 33.33%;
 	overflow-y: auto;
 	border: 2px solid var(--clr-grey-8);
 	background-color: var(--clr-black-2);

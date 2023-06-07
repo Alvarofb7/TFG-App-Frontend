@@ -165,7 +165,7 @@ export const CalendarModal = () => {
 						value={formValues.title}
 						onChange={onInputChange}
 						required
-            aria-label="title"
+						aria-label="title"
 					/>
 				</div>
 
@@ -204,7 +204,7 @@ export const CalendarModal = () => {
 							type="button"
 							className="btn btn-outline-danger btn-block btn-submit-modal"
 							onClick={handleDelete}
-              aria-label="btn-delete-event"
+							aria-label="btn-delete-event"
 						>
 							<i className="fa fa-trash"></i>
 							<span> Eliminar</span>

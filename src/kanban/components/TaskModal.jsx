@@ -159,7 +159,7 @@ export const TaskModal = () => {
 						autoComplete="false"
 						value={formValues.title}
 						onChange={onInputChange}
-            aria-label="title"
+						aria-label="title"
 						required
 					/>
 				</div>
