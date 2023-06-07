@@ -127,7 +127,7 @@ exports[`Pruebas de AppRouter Debe de mostrar la página de home en caso de no e
             <img
               alt="Imagen notas"
               class="slide-img"
-              src="/img/Nota.jpg"
+              src="/img/Notas.jpg"
             />
           </div>
           <div
@@ -163,7 +163,7 @@ exports[`Pruebas de AppRouter Debe de mostrar la página de home en caso de no e
       </div>
     </section>
     <section
-      class="section"
+      class="section-about"
       id="about"
     >
       <div

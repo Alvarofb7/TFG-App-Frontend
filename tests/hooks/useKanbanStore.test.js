@@ -34,7 +34,6 @@ const getMockStore = (kanbanInitialState) => {
 
 describe("Pruebas en useKanbanStore", () => {
 	beforeEach(() => {
-		localStorage.clear();
 		jest.clearAllMocks();
 	});
 
@@ -62,9 +61,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("startLoadingTasks debe de obtener las tareas", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanInitialState });
 
 		const { result } = renderHook(() => useKanbanStore(), {
@@ -94,9 +90,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("setActiveTask debe de activar una nota", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanWithTaskState });
 
 		const { result } = renderHook(() => useKanbanStore(), {
@@ -115,9 +108,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("quitActiveTask debe de quitar una nota activa", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanWithActiveTaskState });
 
 		const { result } = renderHook(() => useKanbanStore(), {
@@ -136,9 +126,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("startAddNewTask debe de añadir una tarea", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanInitialState });
 
 		const { result } = renderHook(() => useKanbanStore(), {
@@ -168,9 +155,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("startAddNewTask/updateTask debe de actualizar una tarea", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanWithTaskState });
 
 		const { result } = renderHook(() => useKanbanStore(), {
@@ -193,9 +177,6 @@ describe("Pruebas en useKanbanStore", () => {
 	});
 
 	test("startDeleteAllTasksInDone debe de eliminar todas las tareas terminadas", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...kanbanWithTaskInDoneState });
 
 		const { result } = renderHook(() => useKanbanStore(), {

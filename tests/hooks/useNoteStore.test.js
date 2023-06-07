@@ -35,7 +35,6 @@ const getMockStore = (notesInitialState) => {
 
 describe("Pruebas en useNoteStore", () => {
 	beforeEach(() => {
-		localStorage.clear();
 		jest.clearAllMocks();
 	});
 
@@ -66,9 +65,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("setActiveNote debe de activar una nota existente", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteWithNoteState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -88,9 +84,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("setActiveNewNote debe de activar una nota nueva", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteInitialState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -108,9 +101,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("clearActiveNote debe de quitar una nota activa", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteWithNoteAndActiveState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -128,9 +118,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("startLoadingNote tiene que obtener las notas correctamente", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteInitialState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -159,9 +146,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("startSavingNote debe de añadir una nota nueva", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteInitialState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -201,9 +185,6 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("startSavingNote debe de actualizar una nota", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({ ...noteWithNoteState });
 		const { result } = renderHook(() => useNoteStore(), {
 			wrapper: ({ children }) => (
@@ -241,8 +222,8 @@ describe("Pruebas en useNoteStore", () => {
 	});
 
 	test("startDeletingNote debe de eliminar una nota", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
+		// const { data } = await api.post("/auth", testUserCredentials);
+		// localStorage.setItem("token", data.token);
 
 		const mockStore = getMockStore({ ...noteWithNoteAndActiveState });
 		const { result } = renderHook(() => useNoteStore(), {

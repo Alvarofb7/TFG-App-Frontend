@@ -64,3 +64,7 @@ yarn add --dev @testing-library/react @types/jest jest-environment-jsdom
 ### testing-library/jest-dom
 
 yarn add --dev @testing-library/jest-dom
+
+### jest-mock-axios
+
+yarn add jest-mock-axios

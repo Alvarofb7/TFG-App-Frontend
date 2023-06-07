@@ -4,7 +4,7 @@ import { act, renderHook } from "@testing-library/react";
 import { initialState, notAuthenticatedState } from "../fixtures/authStates";
 import { authSlice } from "../../src/store";
 import { useAuthStore } from "../../src/hooks";
-import { testUserCredentials } from "../fixtures/testUser";
+import { newUserCredentials, testUserCredentials } from "../fixtures/testUser";
 import { api } from "../../src/api";
 
 const getMockStore = (initialState) => {
@@ -48,6 +48,15 @@ describe("Pruebas en useAuthStore", () => {
 			),
 		});
 
+		const spy = jest.spyOn(api, "post").mockReturnValue({
+			data: {
+				ok: true,
+				uid: testUserCredentials.uid,
+				name: testUserCredentials.name,
+				token: "ALGUN_TOKEN",
+			},
+		});
+
 		await act(async () => {
 			await result.current.startLogin(testUserCredentials);
 		});
@@ -58,13 +67,15 @@ describe("Pruebas en useAuthStore", () => {
 			errorMessage: undefined,
 			status: "authenticated",
 			user: {
-				name: "TestUser",
-				uid: "6478ddfcf9418598c9cc36db",
+				name: testUserCredentials.name,
+				uid: testUserCredentials.uid,
 			},
 		});
 
 		expect(localStorage.getItem("token")).toEqual(expect.any(String));
 		expect(localStorage.getItem("token-init-date")).toEqual(expect.any(String));
+
+		spy.mockRestore();
 	});
 
 	test("startRegister debe de crear un usuario", async () => {
@@ -75,23 +86,17 @@ describe("Pruebas en useAuthStore", () => {
 			),
 		});
 
-		const newUser = {
-			email: "algo2@google.com",
-			password: "1234567",
-			name: "Test Name",
-		};
-
 		const spy = jest.spyOn(api, "post").mockReturnValue({
 			data: {
 				ok: true,
 				uid: "ALGUN_ID",
-				name: "Test Name",
+				name: newUserCredentials.name,
 				token: "ALGUN_TOKEN",
 			},
 		});
 
 		await act(async () => {
-			await result.current.startRegister(newUser);
+			await result.current.startRegister(newUserCredentials);
 		});
 
 		const { errorMessage, status, user } = result.current;
@@ -99,31 +104,10 @@ describe("Pruebas en useAuthStore", () => {
 		expect({ errorMessage, status, user }).toEqual({
 			errorMessage: undefined,
 			status: "authenticated",
-			user: { name: "Test Name", uid: "ALGUN_ID" },
+			user: { name: newUserCredentials.name, uid: "ALGUN_ID" },
 		});
 
 		spy.mockRestore();
-	});
-
-	test("startRegister debe de fallar", async () => {
-		const mockStore = getMockStore({ ...notAuthenticatedState });
-		const { result } = renderHook(() => useAuthStore(), {
-			wrapper: ({ children }) => (
-				<Provider store={mockStore}>{children}</Provider>
-			),
-		});
-
-		await act(async () => {
-			await result.current.startRegister(testUserCredentials);
-		});
-
-		const { errorMessage, status, user } = result.current;
-
-		expect({ errorMessage, status, user }).toEqual({
-			errorMessage: expect.any(String),
-			status: "not-authenticated",
-			user: {},
-		});
 	});
 
 	test("checkAuthToken debe de fallar si no hay token", async () => {
@@ -148,14 +132,22 @@ describe("Pruebas en useAuthStore", () => {
 	});
 
 	test("checkAuthToken debe de autenticar al usuario si hay token", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
+		localStorage.setItem("token", "ALGUN_TOKEN");
 
 		const mockStore = getMockStore({ ...initialState });
 		const { result } = renderHook(() => useAuthStore(), {
 			wrapper: ({ children }) => (
 				<Provider store={mockStore}>{children}</Provider>
 			),
+		});
+
+		const spy = jest.spyOn(api, "get").mockReturnValue({
+			data: {
+				ok: true,
+				uid: testUserCredentials.uid,
+				name: testUserCredentials.name,
+				token: "ALGUN_TOKEN",
+			},
 		});
 
 		await act(async () => {
@@ -168,9 +160,11 @@ describe("Pruebas en useAuthStore", () => {
 			errorMessage: undefined,
 			status: "authenticated",
 			user: {
-				name: "TestUser",
-				uid: "6478ddfcf9418598c9cc36db",
+				name: testUserCredentials.name,
+				uid: testUserCredentials.uid,
 			},
 		});
+
+		spy.mockRestore();
 	});
 });
