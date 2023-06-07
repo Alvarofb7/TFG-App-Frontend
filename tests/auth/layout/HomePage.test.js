@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { HomePage } from "../../../src/auth/layout/HomePage";
 
 describe("Pruebas de HomePage", () => {

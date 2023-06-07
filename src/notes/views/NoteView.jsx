@@ -45,8 +45,8 @@ export const NoteView = () => {
 							name="title"
 							value={title}
 							onChange={onInputChange}
-              required
-              aria-label="input-title-note"
+							required
+							aria-label="input-title-note"
 						/>
 					</div>
 					<div className="form-group mb-3">

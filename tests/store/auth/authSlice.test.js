@@ -45,7 +45,8 @@ describe("Pruebas en authSlice", () => {
 
 	test("Debe de limpiar el mensaje de error", () => {
 		const errorMsg = "Credenciales no válidas";
-		let state = authSlice.reducer(authenticatedState, onLogout(errorMsg));
+		let state;
+		state = authSlice.reducer(authenticatedState, onLogout(errorMsg));
 
 		state = authSlice.reducer(authenticatedState, clearErrorMessage());
 

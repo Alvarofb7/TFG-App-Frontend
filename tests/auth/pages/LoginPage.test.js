@@ -1,6 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import { LoginPage } from "../../../src/auth/pages/LoginPage";
-import { useAuthStore, useForm } from "../../../src/hooks";
 
 jest.mock("../../../src/hooks/useAuthStore");
 jest.mock("../../../src/hooks/useForm");
@@ -46,7 +45,9 @@ describe("LoginPage", () => {
 		expect(screen.getByPlaceholderText("Nombre")).toBeInTheDocument();
 		expect(loginButton).toBeInTheDocument();
 		expect(registerButton).toBeInTheDocument();
-		expect(screen.getByPlaceholderText("Repita la contraseña")).toBeInTheDocument();
+		expect(
+			screen.getByPlaceholderText("Repita la contraseña")
+		).toBeInTheDocument();
 	});
 
 	test("El botón de inicio de sesión debe activar la función de inicio de sesión al hacer clic", () => {

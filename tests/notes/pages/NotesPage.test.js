@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
-import { NotesLayout } from "../../../src/notes/layout/NotesLayout";
 import { useNoteStore } from "../../../src/hooks";
 import { noteInitialState } from "../../fixtures/notesStates";
 import { notesSlice } from "../../../src/store";

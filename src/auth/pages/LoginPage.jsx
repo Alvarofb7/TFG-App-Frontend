@@ -111,7 +111,11 @@ export const LoginPage = () => {
 								</button>
 							</div>
 							<div className="d-grid gap-2">
-								<button className="btn btn-light btnSubmit" aria-label="btn-login" type="submit">
+								<button
+									className="btn btn-light btnSubmit"
+									aria-label="btn-login"
+									type="submit"
+								>
 									Login
 								</button>
 							</div>

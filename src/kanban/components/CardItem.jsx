@@ -36,9 +36,9 @@ export const CardItem = ({ data = {}, index }) => {
 							: "card-container"
 					}`}
 					onClick={actionOpenKanbanModal}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
 				>
 					<div
 						className={`card-title ${data.status === status.done && "done"}`}
@@ -47,7 +47,7 @@ export const CardItem = ({ data = {}, index }) => {
 						<button
 							type="button"
 							className="btn btn-danger"
-              aria-label="btn-delete-task"
+							aria-label="btn-delete-task"
 							onClick={handleDeleteTask}
 						>
 							<i className="fa-solid fa-xmark" />
