@@ -76,7 +76,6 @@ export const ContainerCards = ({ status: title, items = [] }) => {
 			{(provided) => (
 				<div
 					className="layout-cards"
-					layout-cards="layout-cards"
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 				>

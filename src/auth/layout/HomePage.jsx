@@ -170,7 +170,7 @@ export const HomePage = ({ children }) => {
 						</div>
 						<div className="slide">
 							<img
-								src="/img/Nota.jpg"
+								src="/img/Notas.jpg"
 								className="slide-img"
 								alt="Imagen notas"
 							/>
@@ -194,7 +194,7 @@ export const HomePage = ({ children }) => {
 				</div>
 			</section>
 			{/* Quien soy */}
-			<section id="about" className="section">
+			<section id="about" className="section-about">
 				<div className="home-title">
 					<h2>¿Quién soy?</h2>
 				</div>
