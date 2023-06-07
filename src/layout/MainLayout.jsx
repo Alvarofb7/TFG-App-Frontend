@@ -10,9 +10,9 @@ export const MainLayout = ({ children }) => {
 	}, []);
 
 	return (
-		<>
+		<div className="page-container">
 			<Navbar />
 			{children}
-		</>
+		</div>
 	);
 };
