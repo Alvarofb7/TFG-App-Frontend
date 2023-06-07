@@ -1,6 +1,12 @@
 export const testUserCredentials = {
 	email: "test@gmail.com",
-	password: "123456Aa_",
-	uid: "6478ddfcf9418598c9cc36db",
+	password: "Password12_",
+	uid: "user_id",
 	name: "TestUser",
+};
+
+export const newUserCredentials = {
+	email: "algo2@google.com",
+	password: "1234567",
+	name: "Test Name",
 };

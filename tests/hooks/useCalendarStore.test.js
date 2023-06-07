@@ -36,7 +36,6 @@ const getMockStore = (calendarInitialState) => {
 
 describe("Pruebas en useCalendarStore", () => {
 	beforeEach(() => {
-		localStorage.clear();
 		jest.clearAllMocks();
 	});
 
@@ -60,9 +59,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("StartSavingEvent debe de insertar el evento", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarInitialState,
 		});
@@ -105,9 +101,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("StartSavingEvent debe de actualizar el evento", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarWithEventsState,
 		});
@@ -135,9 +128,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("startLoadingEvents debe de obtener los eventos", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarInitialState,
 		});
@@ -172,9 +162,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("startDeletingEvent debe de eliminar el evento", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarWithActiveEventState,
 		});
@@ -202,9 +189,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("setActiveEvent debe de activar un evento", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarWithoutActiveEventState,
 		});
@@ -228,9 +212,6 @@ describe("Pruebas en useCalendarStore", () => {
 	});
 
 	test("quitActiveEvent debe de quitar el evento activado", async () => {
-		const { data } = await api.post("/auth", testUserCredentials);
-		localStorage.setItem("token", data.token);
-
 		const mockStore = getMockStore({
 			...calendarWithActiveEventState,
 		});
